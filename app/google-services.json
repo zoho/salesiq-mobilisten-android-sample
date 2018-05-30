@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "1002060741218",
+    "firebase_url": "https://mobilisten-push.firebaseio.com",
+    "project_id": "mobilisten-push",
+    "storage_bucket": "mobilisten-push.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1002060741218:android:7791de57ecf4e04f",
+        "android_client_info": {
+          "package_name": "com.zoho.salesiq.androidsdk"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1002060741218-d02msdavkidt64dvmuqgq5bg2tvl67os.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "1002060741218-d02msdavkidt64dvmuqgq5bg2tvl67os.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAYjXoeEPfQym5G36MTXj-1BXpOdED429E"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
