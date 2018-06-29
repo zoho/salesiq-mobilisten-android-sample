@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.zoho.livechat.android.MbedableComponent;
 import com.zoho.salesiqembed.ZohoSalesIQ;
 
 public class SecondActivity extends AppCompatActivity
@@ -38,5 +39,13 @@ public class SecondActivity extends AppCompatActivity
                 ZohoSalesIQ.Tracking.setCustomAction("Disliked");  //to set custom action performed by visitor
             }
         });
+
+        try
+        {
+            ZohoSalesIQ.Chat.setVisibility(MbedableComponent.CHAT,false); //This api hide the chat widget in this activity
+        } catch (ClassNotFoundException e)
+        {
+            e.printStackTrace();
+        }
     }
 }

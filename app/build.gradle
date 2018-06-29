@@ -19,7 +19,7 @@ android {
 
 dependencies {
     implementation 'com.android.support:appcompat-v7:27.1.1'
-    implementation 'com.zoho.salesiq:mobilisten:1.2.3'
+    implementation 'com.zoho.salesiq:mobilisten:1.2.5'
     implementation 'com.google.firebase:firebase-messaging:17.0.0'
 }
 apply plugin: 'com.google.gms.google-services'
