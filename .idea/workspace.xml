@@ -9,9 +9,38 @@
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="821773c8-f8a8-430e-aa04-02eecbcee084" name="Default" comment="" />
+    <list default="true" id="821773c8-f8a8-430e-aa04-02eecbcee084" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/zoho/salesiq/androidsdk/PrechatFormActivity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_prechat_form.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.4/fileChanges/last-build.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.4/fileContent/fileContent.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.4/fileHashes/fileHashes.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.4/fileHashes/fileHashes.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.4/fileHashes/resourceHashesCache.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.4/javaCompile/classAnalysis.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.4/javaCompile/jarAnalysis.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.4/javaCompile/javaCompile.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.4/javaCompile/taskHistory.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.4/javaCompile/taskJars.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.4/taskHistory/taskHistory.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.4/taskHistory/taskHistory.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/cache.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SalesIQSDKDemo.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/app.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/zoho/salesiq/androidsdk/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/zoho/salesiq/androidsdk/MainActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/local.properties" beforeDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
-    <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -29,108 +58,118 @@
       </state>
     </system>
   </component>
+  <component name="FUSProjectUsageTrigger">
+    <session id="-258230279">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.closed" value="1" />
+          <entry key="project.open.time.0" value="1" />
+          <entry key="project.open.time.3" value="1" />
+          <entry key="project.opened" value="2" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="gradle" value="14" />
+          <entry key="java" value="478" />
+          <entry key="xml" value="198" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="Groovy" value="14" />
+          <entry key="JAVA" value="478" />
+          <entry key="XML" value="198" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="gradle" value="1" />
+          <entry key="java" value="3" />
+          <entry key="xml" value="2" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="Groovy" value="1" />
+          <entry key="JAVA" value="3" />
+          <entry key="XML" value="2" />
+        </counts>
+      </usages-collector>
+    </session>
+  </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="activity_main.xml" pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="540">
-              <caret line="36" column="17" lean-forward="false" selection-start-line="36" selection-start-column="17" selection-end-line="36" selection-end-column="17" />
-              <folding />
+            <state relative-caret-position="600">
+              <caret line="40" column="42" selection-start-line="35" selection-start-column="6" selection-end-line="40" selection-end-column="42" />
             </state>
           </provider>
-          <provider editor-type-id="android-designer2">
-            <state />
-          </provider>
+          <provider editor-type-id="android-designer2" />
         </entry>
       </file>
-      <file leaf-file-name="ic_salesiq.png" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/ic_salesiq.png">
-          <provider selected="true" editor-type-id="images">
-            <state />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MyApplication.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/zoho/salesiq/androidsdk/MyApplication.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="14" column="37" lean-forward="false" selection-start-line="14" selection-start-column="37" selection-end-line="14" selection-end-column="37" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MainActivity.java" pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/zoho/salesiq/androidsdk/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="475">
-              <caret line="45" column="65" lean-forward="false" selection-start-line="45" selection-start-column="8" selection-end-line="45" selection-end-column="65" />
+            <state relative-caret-position="210">
+              <caret line="25" column="34" selection-start-line="25" selection-start-column="22" selection-end-line="25" selection-end-column="34" />
               <folding>
-                <element signature="e#826#1352#0" expanded="true" />
-                <element signature="e#1351#1352#0" expanded="true" />
-                <element signature="e#2616#2855#0" expanded="true" />
-                <element signature="e#2854#2855#0" expanded="true" />
-                <element signature="e#2901#3160#0" expanded="true" />
-                <element signature="e#3159#3160#0" expanded="true" />
+                <element signature="e#3523#3783#0" expanded="true" />
+                <element signature="e#3782#3783#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="build.gradle" pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_prechat_form.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="254">
+              <caret line="68" column="35" selection-start-line="68" selection-start-column="35" selection-end-line="68" selection-end-column="35" />
+            </state>
+          </provider>
+          <provider editor-type-id="android-designer2" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/zoho/salesiq/androidsdk/PrechatFormActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="433">
+              <caret line="50" column="5" selection-start-line="50" selection-start-column="5" selection-end-line="50" selection-end-column="5" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#900#1085#0" expanded="true" />
+                <element signature="e#1084#1085#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/build.gradle">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="345">
-              <caret line="23" column="1" lean-forward="false" selection-start-line="23" selection-start-column="1" selection-end-line="23" selection-end-column="1" />
-              <folding />
+              <caret line="23" column="59" selection-start-line="23" selection-start-column="59" selection-end-line="23" selection-end-column="59" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="activity_second.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_second.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
-              <caret line="21" column="38" lean-forward="false" selection-start-line="21" selection-start-column="38" selection-end-line="21" selection-end-column="38" />
-              <folding />
-            </state>
-          </provider>
-          <provider editor-type-id="android-designer2">
-            <state />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SecondActivity.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/zoho/salesiq/androidsdk/SecondActivity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="480">
-              <caret line="37" column="62" lean-forward="false" selection-start-line="37" selection-start-column="62" selection-end-line="37" selection-end-column="62" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MyFirebaseMessagingService.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/zoho/salesiq/androidsdk/notification/MyFirebaseMessagingService.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="16" column="37" lean-forward="false" selection-start-line="16" selection-start-column="37" selection-end-line="16" selection-end-column="37" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MyFirebaseInstanceIDService.java" pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/zoho/salesiq/androidsdk/notification/MyFirebaseInstanceIDService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="12" column="38" lean-forward="false" selection-start-line="12" selection-start-column="38" selection-end-line="12" selection-end-column="38" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="60">
+              <caret line="4" column="28" selection-start-line="4" selection-start-column="28" selection-end-line="4" selection-end-column="28" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/zoho/salesiq/androidsdk/MyApplication.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="225">
+              <caret line="17" selection-start-line="17" selection-end-line="17" />
             </state>
           </provider>
         </entry>
@@ -2171,9 +2210,6 @@
         </entry>
       </map>
     </option>
-    <option name="externalProjectsViewState">
-      <projects_view />
-    </option>
     <option name="projectSyncType">
       <map>
         <entry key="$PROJECT_DIR$" value="RE_IMPORT" />
@@ -2191,12 +2227,14 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/zoho/salesiq/androidsdk/notification/MyFirebaseMessagingService.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/zoho/salesiq/androidsdk/notification/MyFirebaseInstanceIDService.java" />
         <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/zoho/salesiq/androidsdk/MainActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_second.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/zoho/salesiq/androidsdk/SecondActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/zoho/salesiq/androidsdk/MyApplication.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" />
         <option value="$PROJECT_DIR$/app/build.gradle" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/zoho/salesiq/androidsdk/MainActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_prechat_form.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/zoho/salesiq/androidsdk/PrechatFormActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/zoho/salesiq/androidsdk/MyApplication.java" />
       </list>
     </option>
   </component>
@@ -2208,78 +2246,42 @@
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
-    <navigator currentView="AndroidView" proportions="" version="1">
-      <flattenPackages />
-      <showMembers />
-      <showModules />
-      <showLibraryContents />
-      <hideEmptyPackages />
-      <abbreviatePackageNames />
-      <autoscrollToSource />
-      <autoscrollFromSource />
-      <sortByType />
-      <manualOrder />
+    <navigator currentView="ProjectPane" proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
-              <item name="SalesIQSDKDemo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="SalesIQSDKDemo" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-            </path>
-            <path>
-              <item name="SalesIQSDKDemo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="SalesIQSDKDemo" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="salesiq-sdk-android-sample" type="b2602c69:ProjectViewProjectNode" />
+              <item name="salesiq-sdk-android-sample" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scratches" />
       <pane id="AndroidView">
         <subPane>
           <expand>
             <path>
-              <item name="SalesIQSDKDemo" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-            </path>
-            <path>
-              <item name="SalesIQSDKDemo" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
-            </path>
-            <path>
-              <item name="SalesIQSDKDemo" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
-              <item name="androidsdk" type="cbb59c9e:AndroidPsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SalesIQSDKDemo" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
-              <item name="androidsdk" type="cbb59c9e:AndroidPsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SalesIQSDKDemo" type="1abcf292:AndroidViewProjectNode" />
+              <item name="salesiq-sdk-android-sample" type="1abcf292:AndroidViewProjectNode" />
               <item name="Gradle Scripts" type="ae0cef3a:AndroidBuildScriptsGroupNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="settings.editor.selected.configurable" value="settings.github" />
+    <property name="SearchEverywhereHistoryKey" value="MyAp&#9;FILE&#9;file:///Users/rakesh-3121/repositories/salesiq-sdk-android-sample/app/src/main/java/com/zoho/salesiq/androidsdk/MyApplication.java&#10;MyA&#9;FILE&#9;file:///Users/rakesh-3121/repositories/salesiq-sdk-android-sample/app/src/main/java/com/zoho/salesiq/androidsdk/MyApplication.java&#10;LDP&#9;PSI&#9;JAVA://com.zoho.livechat.android.utils.LDPEXUtil" />
     <property name="android.sdk.path" value="$USER_HOME$/Library/Android/sdk" />
-    <property name="device.picker.selection" value="172.24.120.158:5555" />
-    <property name="SearchEverywhereHistoryKey" value="LDP&#9;PSI&#9;JAVA://com.zoho.livechat.android.utils.LDPEXUtil" />
+    <property name="device.picker.selection" value="8AHY0L69E" />
+    <property name="settings.editor.selected.configurable" value="settings.github" />
+    <property name="show.do.not.ask.upgrade.gradle.plugin" value="3.1.2" />
   </component>
   <component name="RecentsManager">
     <key name="android.template.packageName">
@@ -2304,34 +2306,38 @@
     </option>
   </component>
   <component name="RunManager">
-    <configuration default="true" type="AndroidJUnit" factoryName="Android JUnit">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <module name="" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" />
+    <configuration name="&lt;template&gt;" type="Applet" default="true" selected="false">
       <option name="MAIN_CLASS_NAME" />
-      <option name="METHOD_NAME" />
-      <option name="TEST_OBJECT" value="class" />
+      <option name="HTML_FILE_NAME" />
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <option name="VM_PARAMETERS" />
+    </configuration>
+    <configuration name="&lt;template&gt;" type="JUnit" default="true" selected="false">
+      <option name="MAIN_CLASS_NAME" />
       <option name="VM_PARAMETERS" value="-ea" />
       <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="file://$MODULE_DIR$" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <envs />
-      <patterns />
-      <method>
+      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
+    </configuration>
+    <configuration name="&lt;template&gt;" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" default="true" selected="false">
+      <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m -ea" />
+    </configuration>
+    <configuration default="true" type="AndroidJUnit" factoryName="Android JUnit">
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <method v="2">
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
       </method>
     </configuration>
     <configuration name="app" type="AndroidRunConfigurationType" factoryName="Android App" activateToolWindowBeforeRun="false">
       <module name="app" />
       <option name="DEPLOY" value="true" />
+      <option name="DEPLOY_APK_FROM_BUNDLE" value="false" />
+      <option name="DEPLOY_AS_INSTANT" value="false" />
       <option name="ARTIFACT_NAME" value="" />
       <option name="PM_INSTALL_OPTIONS" value="" />
+      <option name="DYNAMIC_FEATURES_DISABLED_LIST" value="" />
       <option name="ACTIVITY_EXTRA_FLAGS" value="" />
       <option name="MODE" value="default_activity" />
       <option name="CLEAR_LOGCAT" value="false" />
@@ -2368,79 +2374,29 @@
       </Native>
       <Profilers>
         <option name="ADVANCED_PROFILING_ENABLED" value="false" />
+        <option name="STARTUP_CPU_PROFILING_ENABLED" value="false" />
+        <option name="STARTUP_CPU_PROFILING_CONFIGURATION_NAME" value="Sample Java Methods" />
       </Profilers>
       <option name="DEEP_LINK" value="" />
       <option name="ACTIVITY_CLASS" value="" />
+      <method v="2">
+        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
+      </method>
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="ENABLE_SWING_INSPECTOR" value="false" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="" />
-      <envs />
-    </configuration>
-    <configuration default="true" type="Remote" factoryName="Remote">
-      <option name="USE_SOCKET_TRANSPORT" value="true" />
-      <option name="SERVER_MODE" value="false" />
-      <option name="SHMEM_ADDRESS" value="javadebug" />
-      <option name="HOST" value="localhost" />
-      <option name="PORT" value="5005" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
     </configuration>
     <configuration default="true" type="TestNG" factoryName="TestNG">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <module name="" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="SUITE_NAME" />
-      <option name="PACKAGE_NAME" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="METHOD_NAME" />
-      <option name="GROUP_NAME" />
-      <option name="TEST_OBJECT" value="CLASS" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
-      <option name="OUTPUT_DIRECTORY" />
-      <option name="ANNOTATION_TYPE" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <option name="USE_DEFAULT_REPORTERS" value="false" />
-      <option name="PROPERTIES_FILE" />
-      <envs />
       <properties />
       <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
     </configuration>
-    <configuration name="&lt;template&gt;" type="Applet" default="true" selected="false">
-      <option name="MAIN_CLASS_NAME" />
-      <option name="HTML_FILE_NAME" />
-      <option name="HTML_USED" value="false" />
-      <option name="WIDTH" value="400" />
-      <option name="HEIGHT" value="300" />
-      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
-      <option name="VM_PARAMETERS" />
-    </configuration>
-    <configuration name="&lt;template&gt;" type="JUnit" default="true" selected="false">
-      <option name="MAIN_CLASS_NAME" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
-    </configuration>
-    <configuration name="&lt;template&gt;" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" default="true" selected="false">
-      <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m -ea" />
-    </configuration>
-  </component>
-  <component name="ShelveChangesManager" show_recycled="false">
-    <option name="remove_strategy" value="false" />
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -2458,36 +2414,37 @@
   <component name="ToolWindowManager">
     <frame x="43" y="23" width="1397" height="877" extended-state="6" />
     <layout>
-      <window_info id="Android Profiler" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3291513" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32806325" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Logcat" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32938075" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2494465" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Build" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32806325" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Device File Explorer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
-      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2494465" />
+      <window_info id="Structure" order="1" weight="0.25" />
+      <window_info id="Designer" order="2" />
+      <window_info id="Build Variants" order="3" side_tool="true" />
+      <window_info id="Image Layers" order="4" />
+      <window_info id="Favorites" order="5" side_tool="true" />
+      <window_info id="Captures" order="6" side_tool="true" weight="0.25" />
+      <window_info id="Capture Tool" order="7" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Build" order="7" weight="0.32677165" />
+      <window_info anchor="bottom" id="Android Profiler" order="8" />
+      <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
+      <window_info anchor="bottom" id="Logcat" order="10" weight="0.32938075" />
+      <window_info anchor="bottom" id="Version Control" order="11" visible="true" weight="0.32939634" />
+      <window_info anchor="bottom" id="Terminal" order="12" weight="0.32677165" />
+      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Capture Analysis" order="3" />
+      <window_info anchor="right" id="Preview" order="4" weight="0.3291513" />
+      <window_info anchor="right" id="Device File Explorer" order="5" side_tool="true" />
+      <window_info anchor="right" id="Gradle" order="6" />
+      <window_info anchor="right" id="Palette&#9;" order="7" />
+      <window_info anchor="right" id="Theme Preview" order="8" />
+      <window_info anchor="right" id="Fabric" order="9" />
     </layout>
   </component>
   <component name="VcsContentAnnotationSettings">
@@ -2502,352 +2459,135 @@
           <properties />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="2" />
     </breakpoint-manager>
-    <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/mobilisten-chat-1.2.3.aar/5b3bd83af17d4e7cdda24338caef278d/jars/classes.jar!/com/zoho/livechat/android/NotificationService.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="243">
-          <caret line="68" column="23" lean-forward="false" selection-start-line="68" selection-start-column="23" selection-end-line="68" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/mobilisten-chat-1.2.3.aar/5b3bd83af17d4e7cdda24338caef278d/jars/classes.jar!/com/zoho/livechat/android/NotificationService.class" />
     <entry file="file://$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/app/google-services.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="540">
-          <caret line="36" column="43" lean-forward="false" selection-start-line="36" selection-start-column="43" selection-end-line="36" selection-end-column="43" />
-          <folding />
+          <caret line="36" column="43" selection-start-line="36" selection-start-column="43" selection-end-line="36" selection-end-column="43" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/mipmap-hdpi/ic_launcher.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
+      <provider selected="true" editor-type-id="images" />
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="239">
-          <caret line="21" column="27" lean-forward="false" selection-start-line="21" selection-start-column="27" selection-end-line="21" selection-end-column="27" />
-          <folding />
+          <caret line="21" column="27" selection-start-line="21" selection-start-column="27" selection-end-line="21" selection-end-column="27" />
         </state>
       </provider>
-      <provider editor-type-id="android-manifest">
-        <state />
-      </provider>
+      <provider editor-type-id="android-manifest" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/zoho/salesiq/androidsdk/notification/MyFirebaseInstanceIDService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="38" lean-forward="false" selection-start-line="12" selection-start-column="38" selection-end-line="12" selection-end-column="38" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/zoho/salesiq/androidsdk/notification/MyFirebaseMessagingService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" column="37" lean-forward="false" selection-start-line="16" selection-start-column="37" selection-end-line="16" selection-end-column="37" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/mobilisten-chat-1.2.3.aar/5b3bd83af17d4e7cdda24338caef278d/jars/classes.jar!/com/zoho/livechat/android/ZohoLiveChat.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="243">
-          <caret line="270" column="27" lean-forward="false" selection-start-line="270" selection-start-column="27" selection-end-line="270" selection-end-column="27" />
-          <folding>
-            <marker date="1527577200000" expanded="false" signature="0:104" ph="/.../" />
-            <marker date="1527577200000" expanded="false" signature="149:1798" ph="..." />
-            <marker date="1527577200000" expanded="true" signature="2023:2030" ph="{}" />
-            <marker date="1527577200000" expanded="true" signature="2133:2212" ph="{...}" />
-            <marker date="1527577200000" expanded="true" signature="2331:4278" ph="{...}" />
-            <marker date="1527577200000" expanded="true" signature="4330:4413" ph="{...}" />
-            <marker date="1527577200000" expanded="false" signature="4457:4468" ph=" { " />
-            <marker date="1527577200000" expanded="false" signature="4520:4526" ph=" }" />
-            <marker date="1527577200000" expanded="true" signature="4578:6673" ph="{...}" />
-            <marker date="1527577200000" expanded="false" signature="6742:6753" ph=" { " />
-            <marker date="1527577200000" expanded="false" signature="6779:6785" ph=" }" />
-            <marker date="1527577200000" expanded="true" signature="6798:6874" ph="{...}" />
-            <marker date="1527577200000" expanded="true" signature="6913:7572" ph="{...}" />
-            <marker date="1527577200000" expanded="true" signature="6945:6956" ph="{}" />
-            <marker date="1527577200000" expanded="true" signature="7019:7223" ph="{...}" />
-            <marker date="1527577200000" expanded="true" signature="7275:7566" ph="{...}" />
-            <marker date="1527577200000" expanded="true" signature="7602:7905" ph="{...}" />
-            <marker date="1527577200000" expanded="true" signature="7625:7636" ph="{}" />
-            <marker date="1527577200000" expanded="true" signature="7699:7899" ph="{...}" />
-            <marker date="1527577200000" expanded="true" signature="7944:10097" ph="{...}" />
-            <marker date="1527577200000" expanded="true" signature="7976:7987" ph="{}" />
-            <marker date="1527577200000" expanded="true" signature="8063:8647" ph="{...}" />
-            <marker date="1527577200000" expanded="true" signature="8724:9276" ph="{...}" />
-            <marker date="1527577200000" expanded="true" signature="9360:9441" ph="{...}" />
-            <marker date="1527577200000" expanded="true" signature="9500:9565" ph="{...}" />
-            <marker date="1527577200000" expanded="true" signature="9609:9698" ph="{...}" />
-            <marker date="1527577200000" expanded="true" signature="9746:9934" ph="{...}" />
-            <marker date="1527577200000" expanded="true" signature="10007:10091" ph="{...}" />
-            <marker date="1527577200000" expanded="true" signature="10129:10457" ph="{...}" />
-            <marker date="1527577200000" expanded="true" signature="10213:10224" ph="{}" />
-            <marker date="1527577200000" expanded="false" signature="10298:10313" ph=" { " />
-            <marker date="1527577200000" expanded="false" signature="10335:10345" ph=" }" />
-            <marker date="1527577200000" expanded="false" signature="10407:10422" ph=" { " />
-            <marker date="1527577200000" expanded="false" signature="10441:10451" ph=" }" />
-            <marker date="1527577200000" expanded="true" signature="10491:13528" ph="{...}" />
-            <marker date="1527577200000" expanded="true" signature="10659:10670" ph="{}" />
-            <marker date="1527577200000" expanded="true" signature="10720:10937" ph="{...}" />
-            <marker date="1527577200000" expanded="true" signature="10989:11615" ph="{...}" />
-            <marker date="1527577200000" expanded="true" signature="11657:11759" ph="{...}" />
-            <marker date="1527577200000" expanded="true" signature="11827:12050" ph="{...}" />
-            <marker date="1527577200000" expanded="true" signature="12100:12202" ph="{...}" />
-            <marker date="1527577200000" expanded="true" signature="12265:12380" ph="{...}" />
-            <marker date="1527577200000" expanded="false" signature="12424:12439" ph=" { " />
-            <marker date="1527577200000" expanded="false" signature="12454:12464" ph=" }" />
-            <marker date="1527577200000" expanded="true" signature="12522:12983" ph="{...}" />
-            <marker date="1527577200000" expanded="true" signature="13039:13437" ph="{...}" />
-            <marker date="1527577200000" expanded="false" signature="13481:13496" ph=" { " />
-            <marker date="1527577200000" expanded="false" signature="13512:13522" ph=" }" />
-            <marker date="1527577200000" expanded="true" signature="13559:19654" ph="{...}" />
-            <marker date="1527577200000" expanded="true" signature="14035:14046" ph="{}" />
-            <marker date="1527577200000" expanded="false" signature="14097:14112" ph=" { " />
-            <marker date="1527577200000" expanded="false" signature="14126:14136" ph=" }" />
-            <marker date="1527577200000" expanded="false" signature="14177:14192" ph=" { " />
-            <marker date="1527577200000" expanded="false" signature="14205:14215" ph=" }" />
-            <marker date="1527577200000" expanded="true" signature="14271:14415" ph="{...}" />
-            <marker date="1527577200000" expanded="false" signature="14459:14474" ph=" { " />
-            <marker date="1527577200000" expanded="false" signature="14488:14498" ph=" }" />
-            <marker date="1527577200000" expanded="false" signature="14563:14578" ph=" { " />
-            <marker date="1527577200000" expanded="false" signature="14606:14616" ph=" }" />
-            <marker date="1527577200000" expanded="false" signature="14660:14675" ph=" { " />
-            <marker date="1527577200000" expanded="false" signature="14693:14703" ph=" }" />
-            <marker date="1527577200000" expanded="true" signature="14781:14894" ph="{...}" />
-            <marker date="1527577200000" expanded="false" signature="14946:14961" ph=" { " />
-            <marker date="1527577200000" expanded="false" signature="14979:14989" ph=" }" />
-            <marker date="1527577200000" expanded="true" signature="15079:15379" ph="{...}" />
-            <marker date="1527577200000" expanded="false" signature="15425:15440" ph=" { " />
-            <marker date="1527577200000" expanded="false" signature="15459:15469" ph=" }" />
-            <marker date="1527577200000" expanded="true" signature="15557:16158" ph="{...}" />
-            <marker date="1527577200000" expanded="true" signature="16280:18002" ph="{...}" />
-            <marker date="1527577200000" expanded="true" signature="18073:18184" ph="{...}" />
-            <marker date="1527577200000" expanded="false" signature="18246:18261" ph=" { " />
-            <marker date="1527577200000" expanded="false" signature="18283:18293" ph=" }" />
-            <marker date="1527577200000" expanded="false" signature="18351:18366" ph=" { " />
-            <marker date="1527577200000" expanded="false" signature="18380:18390" ph=" }" />
-            <marker date="1527577200000" expanded="false" signature="18438:18453" ph=" { " />
-            <marker date="1527577200000" expanded="false" signature="18466:18476" ph=" }" />
-            <marker date="1527577200000" expanded="true" signature="18554:18727" ph="{...}" />
-            <marker date="1527577200000" expanded="true" signature="18793:19111" ph="{...}" />
-            <marker date="1527577200000" expanded="false" signature="19178:19193" ph=" { " />
-            <marker date="1527577200000" expanded="false" signature="19216:19226" ph=" }" />
-            <marker date="1527577200000" expanded="true" signature="19280:19376" ph="{...}" />
-            <marker date="1527577200000" expanded="true" signature="19412:19512" ph="{...}" />
-            <marker date="1527577200000" expanded="true" signature="19548:19648" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/mobilisten-1.2.3.aar/9e17aca503bf25385e83785065a3d2bd/jars/classes.jar!/com/zoho/salesiqembed/android/tracking/UTSUtil.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="243">
-          <caret line="450" column="23" lean-forward="false" selection-start-line="450" selection-start-column="23" selection-end-line="450" selection-end-column="23" />
-          <folding>
-            <marker date="1527577200000" expanded="false" signature="0:104" ph="/.../" />
-            <marker date="1527577200000" expanded="false" signature="162:2571" ph="..." />
-            <marker date="1527577200000" expanded="true" signature="2684:2691" ph="{}" />
-            <marker date="1527577200000" expanded="true" signature="2748:3284" ph="{...}" />
-            <marker date="1527577200000" expanded="true" signature="3400:9406" ph="{...}" />
-            <marker date="1527577200000" expanded="true" signature="4845:5273" ph="{...}" />
-            <marker date="1527577200000" expanded="false" signature="4905:4936" ph=" { " />
-            <marker date="1527577200000" expanded="false" signature="4968:4994" ph=" }" />
-            <marker date="1527577200000" expanded="true" signature="5062:5251" ph="{...}" />
-            <marker date="1527577200000" expanded="false" signature="5740:5840" ph="onClick(dialog, which) → {" />
-            <marker date="1527577200000" expanded="false" signature="6110:6133" ph="}" />
-            <marker date="1527577200000" expanded="false" signature="6288:6392" ph="onClick(dialog, which) → {" />
-            <marker date="1527577200000" expanded="false" signature="6614:6641" ph="}" />
-            <marker date="1527577200000" expanded="false" signature="6714:6807" ph="onDismiss(dialog) → {" />
-            <marker date="1527577200000" expanded="false" signature="7097:7120" ph="}" />
-            <marker date="1527577200000" expanded="false" signature="7231:7327" ph="onShow(dialogInterface) → {" />
-            <marker date="1527577200000" expanded="false" signature="7546:7569" ph="}" />
-            <marker date="1527577200000" expanded="true" signature="9460:13546" ph="{...}" />
-            <marker date="1527577200000" expanded="true" signature="13591:14241" ph="{...}" />
-            <marker date="1527577200000" expanded="true" signature="14296:16180" ph="{...}" />
-            <marker date="1527577200000" expanded="true" signature="16232:16807" ph="{...}" />
-            <marker date="1527577200000" expanded="true" signature="16855:17342" ph="{...}" />
-            <marker date="1527577200000" expanded="true" signature="17388:17875" ph="{...}" />
-            <marker date="1527577200000" expanded="true" signature="17923:18060" ph="{...}" />
-            <marker date="1527577200000" expanded="true" signature="18114:18579" ph="{...}" />
-            <marker date="1527577200000" expanded="true" signature="18640:19210" ph="{...}" />
-            <marker date="1527577200000" expanded="true" signature="19258:19531" ph="{...}" />
-            <marker date="1527577200000" expanded="true" signature="19580:20087" ph="{...}" />
-            <marker date="1527577200000" expanded="true" signature="20138:20647" ph="{...}" />
-            <marker date="1527577200000" expanded="true" signature="20698:21207" ph="{...}" />
-            <marker date="1527577200000" expanded="true" signature="21262:21846" ph="{...}" />
-            <marker date="1527577200000" expanded="true" signature="21888:22078" ph="{...}" />
-            <marker date="1527577200000" expanded="true" signature="22061:22072" ph="{}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/mobilisten-1.2.3.aar/9e17aca503bf25385e83785065a3d2bd/jars/classes.jar!/com/zoho/salesiqembed/ZohoSalesIQ.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="180" column="28" lean-forward="false" selection-start-line="180" selection-start-column="28" selection-end-line="180" selection-end-column="28" />
-          <folding>
-            <marker date="1527577200000" expanded="false" signature="0:104" ph="/.../" />
-            <marker date="1527577200000" expanded="false" signature="145:1160" ph="..." />
-            <marker date="1527577200000" expanded="true" signature="1235:1242" ph="{}" />
-            <marker date="1527577200000" expanded="true" signature="1330:1507" ph="{...}" />
-            <marker date="1527577200000" expanded="true" signature="1559:1741" ph="{...}" />
-            <marker date="1527577200000" expanded="false" signature="1783:1794" ph=" { " />
-            <marker date="1527577200000" expanded="false" signature="1832:1838" ph=" }" />
-            <marker date="1527577200000" expanded="false" signature="1901:1912" ph=" { " />
-            <marker date="1527577200000" expanded="false" signature="1943:1949" ph=" }" />
-            <marker date="1527577200000" expanded="true" signature="2010:5707" ph="{...}" />
-            <marker date="1527577200000" expanded="true" signature="2110:5038" ph="{...}" />
-            <marker date="1527577200000" expanded="true" signature="2177:2196" ph="{}" />
-            <marker date="1527577200000" expanded="true" signature="2263:2282" ph="{}" />
-            <marker date="1527577200000" expanded="true" signature="2349:3136" ph="{...}" />
-            <marker date="1527577200000" expanded="true" signature="3202:3952" ph="{...}" />
-            <marker date="1527577200000" expanded="true" signature="4021:4798" ph="{...}" />
-            <marker date="1527577200000" expanded="true" signature="4892:4911" ph="{}" />
-            <marker date="1527577200000" expanded="true" signature="5005:5024" ph="{}" />
-            <marker date="1527577200000" expanded="true" signature="5110:5617" ph="{...}" />
-            <marker date="1527577200000" expanded="true" signature="5164:5443" ph="{...}" />
-            <marker date="1527577200000" expanded="true" signature="5521:5540" ph="{}" />
-            <marker date="1527577200000" expanded="true" signature="5584:5603" ph="{}" />
-            <marker date="1527577200000" expanded="true" signature="5742:6464" ph="{...}" />
-            <marker date="1527577200000" expanded="true" signature="5770:5781" ph="{}" />
-            <marker date="1527577200000" expanded="true" signature="5837:6123" ph="{...}" />
-            <marker date="1527577200000" expanded="true" signature="6181:6333" ph="{...}" />
-            <marker date="1527577200000" expanded="true" signature="6397:6458" ph="{...}" />
-            <marker date="1527577200000" expanded="true" signature="6498:7835" ph="{...}" />
-            <marker date="1527577200000" expanded="true" signature="6525:6536" ph="{}" />
-            <marker date="1527577200000" expanded="true" signature="6586:6763" ph="{...}" />
-            <marker date="1527577200000" expanded="true" signature="6815:7095" ph="{...}" />
-            <marker date="1527577200000" expanded="true" signature="7163:7377" ph="{...}" />
-            <marker date="1527577200000" expanded="true" signature="7440:7531" ph="{...}" />
-            <marker date="1527577200000" expanded="true" signature="7589:7682" ph="{...}" />
-            <marker date="1527577200000" expanded="true" signature="7738:7829" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/mobilisten-chat-1.2.3.aar/5b3bd83af17d4e7cdda24338caef278d/jars/classes.jar!/com/zoho/commons/ChatComponent.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="8" column="4" lean-forward="false" selection-start-line="8" selection-start-column="4" selection-end-line="8" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/mobilisten-chat-1.2.3.aar/5b3bd83af17d4e7cdda24338caef278d/jars/classes.jar!/com/zoho/livechat/android/utils/LDPEXUtil.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="48" column="13" lean-forward="false" selection-start-line="48" selection-start-column="13" selection-end-line="48" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/mobilisten-chat-1.2.3.aar/5b3bd83af17d4e7cdda24338caef278d/jars/classes.jar!/com/zoho/livechat/android/ZohoLiveChat.class" />
+    <entry file="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/mobilisten-1.2.3.aar/9e17aca503bf25385e83785065a3d2bd/jars/classes.jar!/com/zoho/salesiqembed/android/tracking/UTSUtil.class" />
+    <entry file="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/mobilisten-1.2.3.aar/9e17aca503bf25385e83785065a3d2bd/jars/classes.jar!/com/zoho/salesiqembed/ZohoSalesIQ.class" />
+    <entry file="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/mobilisten-chat-1.2.3.aar/5b3bd83af17d4e7cdda24338caef278d/jars/classes.jar!/com/zoho/commons/ChatComponent.class" />
+    <entry file="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/mobilisten-chat-1.2.3.aar/5b3bd83af17d4e7cdda24338caef278d/jars/classes.jar!/com/zoho/livechat/android/utils/LDPEXUtil.class" />
     <entry file="file://$PROJECT_DIR$/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
-          <caret line="10" column="56" lean-forward="false" selection-start-line="10" selection-start-column="56" selection-end-line="10" selection-end-column="56" />
-          <folding />
+          <caret line="10" column="56" selection-start-line="10" selection-start-column="56" selection-end-line="10" selection-end-column="56" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable-v24/ic_launcher_foreground.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="435">
-          <caret line="29" column="27" lean-forward="false" selection-start-line="29" selection-start-column="27" selection-end-line="29" selection-end-column="27" />
-          <folding />
+          <caret line="29" column="27" selection-start-line="29" selection-start-column="27" selection-end-line="29" selection-end-column="27" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/ic_launcher_background.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/ic_salesiq.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="540">
-          <caret line="36" column="17" lean-forward="false" selection-start-line="36" selection-start-column="17" selection-end-line="36" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/zoho/salesiq/androidsdk/MainActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="475">
-          <caret line="45" column="65" lean-forward="false" selection-start-line="45" selection-start-column="8" selection-end-line="45" selection-end-column="65" />
-          <folding>
-            <element signature="e#826#1352#0" expanded="true" />
-            <element signature="e#1351#1352#0" expanded="true" />
-            <element signature="e#2616#2855#0" expanded="true" />
-            <element signature="e#2854#2855#0" expanded="true" />
-            <element signature="e#2901#3160#0" expanded="true" />
-            <element signature="e#3159#3160#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
+      <provider selected="true" editor-type-id="images" />
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_second.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="315">
-          <caret line="21" column="38" lean-forward="false" selection-start-line="21" selection-start-column="38" selection-end-line="21" selection-end-column="38" />
-          <folding />
+          <caret line="21" column="38" selection-start-line="21" selection-start-column="38" selection-end-line="21" selection-end-column="38" />
         </state>
       </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
+      <provider editor-type-id="android-designer2" />
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/zoho/salesiq/androidsdk/SecondActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="37" column="62" lean-forward="false" selection-start-line="37" selection-start-column="62" selection-end-line="37" selection-end-column="62" />
-          <folding />
+        <state relative-caret-position="465">
+          <caret line="37" column="13" selection-start-line="37" selection-start-column="13" selection-end-line="37" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/zoho/salesiq/androidsdk/MyApplication.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/zoho/salesiq/androidsdk/notification/MyFirebaseMessagingService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="14" column="37" lean-forward="false" selection-start-line="14" selection-start-column="37" selection-end-line="14" selection-end-column="37" />
-          <folding />
+        <state relative-caret-position="165">
+          <caret line="16" column="37" selection-start-line="16" selection-start-column="37" selection-end-line="16" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="600">
+          <caret line="40" column="42" selection-start-line="35" selection-start-column="6" selection-end-line="40" selection-end-column="42" />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/zoho/salesiq/androidsdk/notification/MyFirebaseInstanceIDService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="28" selection-start-line="4" selection-start-column="28" selection-end-line="4" selection-end-column="28" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="345">
-          <caret line="23" column="1" lean-forward="false" selection-start-line="23" selection-start-column="1" selection-end-line="23" selection-end-column="1" />
-          <folding />
+          <caret line="23" column="59" selection-start-line="23" selection-start-column="59" selection-end-line="23" selection-end-column="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_prechat_form.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="254">
+          <caret line="68" column="35" selection-start-line="68" selection-start-column="35" selection-end-line="68" selection-end-column="35" />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/zoho/salesiq/androidsdk/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="25" column="34" selection-start-line="25" selection-start-column="22" selection-end-line="25" selection-end-column="34" />
+          <folding>
+            <element signature="e#3523#3783#0" expanded="true" />
+            <element signature="e#3782#3783#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/zoho/salesiq/androidsdk/PrechatFormActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="433">
+          <caret line="50" column="5" selection-start-line="50" selection-start-column="5" selection-end-line="50" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#900#1085#0" expanded="true" />
+            <element signature="e#1084#1085#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/zoho/salesiq/androidsdk/MyApplication.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="17" selection-start-line="17" selection-end-line="17" />
         </state>
       </provider>
     </entry>

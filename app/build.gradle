@@ -1,13 +1,13 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 27
+    compileSdkVersion 26
     defaultConfig {
         applicationId "com.zoho.salesiq.androidsdk"
-        minSdkVersion 15
-        targetSdkVersion 27
-        versionCode 1
-        versionName "1.0"
+        minSdkVersion 16
+        targetSdkVersion 26
+        versionCode 2
+        versionName "1.1"
     }
     buildTypes {
         release {
@@ -15,11 +15,15 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    dexOptions {
+        javaMaxHeapSize "4g"
+    }
 }
 
 dependencies {
-    implementation 'com.android.support:appcompat-v7:27.1.1'
-    implementation 'com.zoho.salesiq:mobilisten:1.2.5'
+    implementation 'com.android.support:appcompat-v7:26.1.0'
+    implementation 'com.zoho.salesiq:mobilisten:1.3-beta.9.13'
     implementation 'com.google.firebase:firebase-messaging:17.0.0'
+    implementation 'com.android.support:multidex:1.0.3'
 }
 apply plugin: 'com.google.gms.google-services'

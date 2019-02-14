@@ -8,13 +8,14 @@ import android.widget.Button;
 
 import com.zoho.commons.ChatComponent;
 import com.zoho.commons.Color;
+import com.zoho.livechat.android.exception.InvalidVisitorIDException;
 import com.zoho.salesiqembed.ZohoSalesIQ;
 
 import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity
 {
-    Button loginButton, logoutButton, navigateButton;
+    Button loginButton, logoutButton, navigateButton, prechatButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -25,6 +26,7 @@ public class MainActivity extends AppCompatActivity
         loginButton = findViewById(R.id.login_button);
         logoutButton = findViewById(R.id.logout_button);
         navigateButton = findViewById(R.id.next_button);
+        prechatButton = findViewById(R.id.prechat_button);
 
         loginButton.setOnClickListener(new View.OnClickListener()
         {
@@ -35,7 +37,13 @@ public class MainActivity extends AppCompatActivity
                 ZohoSalesIQ.Visitor.setName("");
                 ZohoSalesIQ.Visitor.setEmail("");
                 ZohoSalesIQ.Visitor.setContactNumber("");
-                ZohoSalesIQ.registerVisitor("123456"); //Visitor unique id
+                try
+                {
+                    ZohoSalesIQ.registerVisitor("123456"); //Visitor unique id
+                } catch (InvalidVisitorIDException e)
+                {
+                    e.printStackTrace();
+                }
                 ZohoSalesIQ.Visitor.addInfo("User Type","Premium"); //Custom visitor information
             }
         });
@@ -78,7 +86,17 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View v)
             {
-                Intent intent = new Intent(MainActivity.this,SecondActivity.class);
+                Intent intent = new Intent(MainActivity.this, SecondActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        prechatButton.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                Intent intent = new Intent(MainActivity.this, PrechatFormActivity.class);
                 startActivity(intent);
             }
         });
