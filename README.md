@@ -1,4 +1,4 @@
-## Installing ZohoSalesIQ Android SDK (Mobilisten)
+## Installing Mobilisten (ZohoSalesIQ Android SDK)
 
 ###### Step 1:
    Add the following maven repository in the root build.gradle file (**/build.gradle**).
@@ -32,4 +32,4 @@
         }
     }
     
- Help Doc - [ZohoSalesIQ Android SDK (Mobilisten)](https://www.zoho.com/salesiq/help/developer-section/android-mobile-sdk-installation.html)
+ Help Doc - [Mobilisten (ZohoSalesIQ Android SDK)](https://www.zoho.com/salesiq/help/developer-section/android-mobile-sdk-installation.html)
