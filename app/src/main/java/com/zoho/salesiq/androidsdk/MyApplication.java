@@ -13,5 +13,8 @@ public class MyApplication extends Application
 
         //initialize SalesIQ
         ZohoSalesIQ.init(this,"","");
+
+        //by default launcher will be hidden can be enabled with following line.
+        ZohoSalesIQ.showLauncher(true);
     }
 }

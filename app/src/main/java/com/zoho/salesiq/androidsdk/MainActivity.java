@@ -54,9 +54,9 @@ public class MainActivity extends AppCompatActivity
         ZohoSalesIQ.Tracking.setPageTitle("SalesIQ Demo | Home");
 
         //Chat Customization
-        ZohoSalesIQ.Chat.setVisibility(ChatComponent.Rating,true); //To show rating after chat ends
-        ZohoSalesIQ.Chat.setVisibility(ChatComponent.Feedback,true); //To show feedback after chat ends
-        ZohoSalesIQ.Chat.setVisibility(ChatComponent.Operator_Image,true); //To show operator image in chat conversation
+        ZohoSalesIQ.Chat.setVisibility(ChatComponent.rating,true); //To show rating after chat ends
+        ZohoSalesIQ.Chat.setVisibility(ChatComponent.feedback,true); //To show feedback after chat ends
+        ZohoSalesIQ.Chat.setVisibility(ChatComponent.operatorImage,true); //To show operator image in chat conversation
         ZohoSalesIQ.Chat.setLanguage(Locale.ENGLISH); //To set visitor locale
         ZohoSalesIQ.Chat.setTitle("Chat with us!"); //No set chat title
         ZohoSalesIQ.Chat.showOperatorImageInLauncher(true); //To show operator image in launcher FAB when chat is connected
@@ -77,7 +77,7 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View v)
             {
-                ZohoSalesIQ.unregisterVisitor(); //this will clear visitor data and make him anonymous
+                ZohoSalesIQ.unregisterVisitor(logoutButton.getContext()); //this will clear visitor data and make him anonymous
             }
         });
 
