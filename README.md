@@ -35,7 +35,6 @@
         }
     }
     
-
  Help Doc - [Mobilisten (ZohoSalesIQ Android SDK)](https://www.zoho.com/salesiq/help/developer-section/android-mobile-sdk-installation.html)
 
 ###### Demo Application:
