@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity
         ZohoSalesIQ.Chat.setVisibility(ChatComponent.rating,true); //To show rating after chat ends
         ZohoSalesIQ.Chat.setVisibility(ChatComponent.feedback,true); //To show feedback after chat ends
         ZohoSalesIQ.Chat.setVisibility(ChatComponent.operatorImage,true); //To show operator image in chat conversation
-        ZohoSalesIQ.Chat.setLanguage(Locale.ENGLISH); //To set visitor locale
+        ZohoSalesIQ.Chat.setLanguage("en"); //To set visitor locale
         ZohoSalesIQ.Chat.setTitle("Chat with us!"); //No set chat title
         ZohoSalesIQ.Chat.showOperatorImageInLauncher(true); //To show operator image in launcher FAB when chat is connected
 
