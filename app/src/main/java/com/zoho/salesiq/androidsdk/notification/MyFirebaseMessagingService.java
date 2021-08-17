@@ -9,11 +9,14 @@ import java.util.Map;
 
 public class MyFirebaseMessagingService extends FirebaseMessagingService
 {
+    @Override
+    public void onMessageReceived(RemoteMessage remoteMessage){
+        Map extras = remoteMessage.getData();
+        ZohoSalesIQ.Notification.handle(this.getApplicationContext(), extras, R.mipmap.ic_launcher);
+    }
 
     @Override
-    public void onMessageReceived(RemoteMessage remoteMessage)
-    {
-        Map extras = remoteMessage.getData();
-        ZohoSalesIQ.Notification.handle(this.getApplicationContext(),extras, R.mipmap.ic_launcher);
+    public void onNewToken(String token){
+        ZohoSalesIQ.Notification.enablePush(token,true);
     }
 }
