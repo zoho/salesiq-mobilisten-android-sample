@@ -48,8 +48,6 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-
-
         //Tracking
         ZohoSalesIQ.Tracking.setPageTitle("SalesIQ Demo | Home");
 
@@ -60,10 +58,6 @@ public class MainActivity extends AppCompatActivity
         ZohoSalesIQ.Chat.setLanguage("en"); //To set visitor locale
         ZohoSalesIQ.Chat.setTitle("Chat with us!"); //No set chat title
         ZohoSalesIQ.Chat.showOperatorImageInLauncher(true); //To show operator image in launcher FAB when chat is connected
-
-        //Chat & Conversation theme
-        ZohoSalesIQ.Chat.setThemeColor("colorPrimary",new Color(64,188,189));
-        ZohoSalesIQ.Chat.setThemeColor("colorPrimaryDark",new Color(44,131,132));
 
         //Conversation customization
         ZohoSalesIQ.Conversation.setVisibility(true);  //Enable/disable conversation
