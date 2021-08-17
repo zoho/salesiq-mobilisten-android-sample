@@ -13,7 +13,7 @@
    Add the following dependency in the app's build.gradle file (**app/build.gradle**).
    
     dependencies {
-       implementation 'com.zoho.salesiq:mobilisten:3.1'
+       implementation 'com.zoho.salesiq:mobilisten:4.0'
     }
     
 ###### Step 3:
