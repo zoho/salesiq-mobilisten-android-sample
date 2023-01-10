@@ -1,3 +1,56 @@
 <resources>
-    <string name="app_name">SalesIQ SDK Demo</string>
+    <!-- You can use the attributes provided by SalesIQ SDK in your application's strings.xml file to customize the corresponding strings.
+         Refer https://www.zoho.com/salesiq/help/developer-guides/android-mobile-sdk-theme-customization-strings-2.0.html -->
+    <string name="livechat.messages.title">Sample content in Strings.xml</string>
+    <string name="livechat.conversation.title">Conversations</string>
+    <string name="livechat.article.title">FAQ</string>
+
+
+    <string name="demo_app_name">Mobilisten Demo</string>
+
+    <string name="demo_app_locale_english" translatable="false"><u>EN</u></string>
+    <string name="demo_app_locale_french" translatable="false"><u>FR</u></string>
+    <string name="demo_app_locale_japanese" translatable="false"><u>JA</u></string>
+    <string name="demo_app_choose_conversation_type">Choose conversation type</string>
+    <string name="demo_app_enter_chat_id">Enter chat ID</string>
+    <string name="demo_app_open_chat_view">Open chatview</string>
+    <string name="demo_app_end_chat_session">End chat</string>
+    <string name="demo_app_enter_attender_id">Enter attender ID</string>
+    <string name="demo_app_get_all_articles">Get all articles</string>
+    <string name="demo_app_open_salesiq_support">Open SalesIQ support</string>
+    <string name="demo_app_launcher_visibility">Launcher visibility :</string>
+    <string name="demo_app_show">Show</string>
+    <string name="demo_app_hide">Hide</string>
+    <string name="demo_app_launcher_position">Launcher position :</string>
+    <string name="demo_app_launcher_mode_floating">Floating</string>
+    <string name="demo_app_launcher_mode_static">Static</string>
+    <string name="demo_app_set_visitor_details">Set visitor details</string>
+    <string name="demo_app_support_language">Support language :</string>
+    <string name="demo_app_separator">|</string>
+    <string name="demo_app_track_visitor_activity">Track visitor actions</string>
+    <string name="demo_app_fetch_salesiq_data">Fetch SalesIQ data</string>
+    <string name="demo_app_logout">Logout</string>
+    <string name="demo_app_login">Login</string>
+    <string name="demo_app_enter_visitor_unique_id">Enter visitor unique ID</string>
+    <string name="demo_app_choose_a_department">Choose a department</string>
+    <string name="demo_app_department">Department</string>
+    <string name="demo_app_conversation_type">Conversation Type</string>
+    <string name="demo_app_set_sample_visitor_location">Set sample visitor location</string>
+    <string name="demo_app_enter_your_name">Enter your name</string>
+    <string name="demo_app_enter_your_email_address">Enter your email address</string>
+    <string name="demo_app_enter_your_contact_number">Enter your contact number</string>
+    <string name="demo_app_enter_your_question">Enter your question</string>
+    <string name="demo_app_start_chat">Start Chat</string>
+    <string name="demo_app_set_info">Set Info</string>
+    <string name="demo_app_key">Key</string>
+    <string name="demo_app_value">Value</string>
+
+    <string-array name="conversation_type_array">
+        <item>Connected</item>
+        <item>Waiting</item>
+        <item>Open</item>
+        <item>Closed</item>
+        <item>Missed</item>
+        <item>Ended</item>
+    </string-array>
 </resources>
