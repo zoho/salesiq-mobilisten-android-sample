@@ -45,6 +45,6 @@ dependencies {
     implementation 'com.google.firebase:firebase-core:16.0.9'
     implementation 'com.google.firebase:firebase-messaging:18.0.0'
 
-    implementation 'com.zoho.salesiq:mobilisten:4.3.3'
+    implementation 'com.zoho.salesiq:mobilisten:4.3.5'
 }
 //apply plugin: 'com.google.gms.google-services'
