@@ -4,7 +4,6 @@
 #### Requirements
 The SDK supports Android 4.1 (API level 16) and above.
 
-#### Installing Zoho SalesIQ SDK
 ###### Step 1:
 Add the following maven repository in the **settings.gradle** file or root build.gradle file (**/build.gradle**).
 
