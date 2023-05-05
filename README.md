@@ -17,7 +17,7 @@ Add the following maven repository in the **settings.gradle** file or root build
 Add the following dependency in the app's build.gradle file (**app/build.gradle**).
 
     dependencies {
-       implementation 'com.zoho.salesiq:mobilisten:4.4.0'
+       implementation 'com.zoho.salesiq:mobilisten:5.0.0'
     }
 
 ![enter image description here](https://www.zohowebstatic.com/sites/zweb/images/salesiq/step-5---dependency-android-sdk.png)
