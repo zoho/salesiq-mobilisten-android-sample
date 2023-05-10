@@ -47,4 +47,5 @@ dependencies {
 
     implementation 'com.zoho.salesiq:mobilisten:5.0.0'
 }
-//apply plugin: 'com.google.gms.google-services'
+
+apply plugin: 'com.google.gms.google-services'
