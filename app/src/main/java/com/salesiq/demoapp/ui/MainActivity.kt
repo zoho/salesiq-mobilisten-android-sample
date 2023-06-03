@@ -146,13 +146,15 @@ class MainActivity : AppCompatActivity() {
 
             /*
              * This API would let you track specified custom actions performed by the visitors in your mobile application.
-             * It will be visible within the Activity section in the chat window.
+             * The actions will be visible within the Activity section in the chat window.
+             *
+             * You can also use this API to open the chat window and trigger a new chat based on the performed custom action
+             * by setting the shouldOpenChatWindow parameter to true. By default, the shouldOpenChatWindow parameter is set to false.
              * Refer https://www.zoho.com/salesiq/help/developer-guides/android-sdk-tracking-custom-actions-v4-2-0.html
              */
             trackVisitorActivityButton.setOnClickListener {
-                ZohoSalesIQ.Tracking.setCustomAction(
-                    "Added To Cart"
-                )
+                ZohoSalesIQ.Tracking.setCustomAction("Added To Cart")
+//              ZohoSalesIQ.Tracking.setCustomAction("Added To Cart", true)
             }
 
             visitorDetailsPageButton.setOnClickListener {

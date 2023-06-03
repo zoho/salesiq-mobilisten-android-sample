@@ -50,6 +50,9 @@ public class SalesIQListeners {
             public void handleTrigger(String triggerName, SIQVisitor visitor) {
                 Log.d(TAG, "HANDLE TRIGGER EVENT CALLED, " + "Trigger Name: " + triggerName + ", Visitor Object - Visitor Name: " + visitor.getName());
             }
+
+            @Override
+            public void handleBotTrigger() { Log.d(TAG, "HANDLE BOT TRIGGER EVENT CALLED"); }
         });
 
         /*
