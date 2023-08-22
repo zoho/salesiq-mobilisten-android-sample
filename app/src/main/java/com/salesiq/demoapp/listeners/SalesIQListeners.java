@@ -3,11 +3,15 @@ package com.salesiq.demoapp.listeners;
 import android.net.Uri;
 import android.util.Log;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 import com.zoho.livechat.android.SIQVisitor;
 import com.zoho.livechat.android.VisitorChat;
 import com.zoho.livechat.android.listeners.SalesIQChatListener;
-import com.zoho.livechat.android.listeners.SalesIQFAQListener;
 import com.zoho.livechat.android.listeners.SalesIQListener;
+import com.zoho.livechat.android.modules.knowledgebase.ui.entities.Resource;
+import com.zoho.livechat.android.modules.knowledgebase.ui.listeners.SalesIQKnowledgeBaseListener;
 import com.zoho.salesiqembed.ZohoSalesIQ;
 
 public class SalesIQListeners {
@@ -144,28 +148,28 @@ public class SalesIQListeners {
         });
 
         /*
-         * SalesIQFAQListener would invoke callback methods for various FAQ actions performed by the visitors.
-         * Refer https://www.zoho.com/salesiq/help/developer-guides/android-sdk-event-handler-salesiq-faq-listener-v4-2-0.html
+         * SalesIQKnowledgeBaseListener would invoke callback methods for various resource actions performed by the visitors.
+         * Refer https://www.zoho.com/salesiq/help/developer-guides/android-sdk-knowledgeBase-set-listener-v6-0-0.html
          */
-        ZohoSalesIQ.FAQ.setListener(new SalesIQFAQListener() {
+        ZohoSalesIQ.KnowledgeBase.setListener(new SalesIQKnowledgeBaseListener() {
             @Override
-            public void handleArticleOpened(String article_id) {
-                Log.d(TAG, "ARTICLE OPENED EVENT CALLED, Opened Article ID: " + article_id);
+            public void handleResourceOpened(@NonNull ZohoSalesIQ.ResourceType resourceType, @Nullable Resource resource) {
+                Log.d(TAG, resourceType+" OPENED EVENT CALLED, Title: " + resource.getTitle());
             }
 
             @Override
-            public void handleArticleClosed(String article_id) {
-                Log.d(TAG, "ARTICLE CLOSED EVENT CALLED, Closed Article ID: " + article_id);
+            public void handleResourceClosed(@NonNull ZohoSalesIQ.ResourceType resourceType, @Nullable Resource resource) {
+                Log.d(TAG, resourceType+" CLOSED EVENT CALLED, Title: " + resource.getTitle());
             }
 
             @Override
-            public void handleArticleLiked(String article_id) {
-                Log.d(TAG, "ARTICLE LIKED EVENT CALLED, Liked Article ID: " + article_id);
+            public void handleResourceLiked(@NonNull ZohoSalesIQ.ResourceType resourceType, @Nullable Resource resource) {
+                Log.d(TAG, resourceType+" LIKED EVENT CALLED, Title: " + resource.getTitle());
             }
 
             @Override
-            public void handleArticleDisliked(String article_id) {
-                Log.d(TAG, "ARTICLE DISLIKED EVENT CALLED, Disliked Article ID: " + article_id);
+            public void handleResourceDisliked(@NonNull ZohoSalesIQ.ResourceType resourceType, @Nullable Resource resource) {
+                Log.d(TAG, resourceType+" DISLIKED EVENT CALLED, Title: " + resource.getTitle());
             }
         });
     }

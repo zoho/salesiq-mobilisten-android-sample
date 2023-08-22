@@ -5,6 +5,8 @@
     <string name="livechat.conversation.title">Conversations</string>
     <string name="livechat.article.title">FAQ</string>
 
+<!--    The mobilisten notification channel name can be changed with this string attribute-->
+    <string name="mobilisten_notification_channel_name">Support notifications</string>
 
     <string name="demo_app_name">Mobilisten Demo</string>
 

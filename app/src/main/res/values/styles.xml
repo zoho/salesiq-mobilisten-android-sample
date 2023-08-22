@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Refer https://www.zoho.com/salesiq/help/developer-guides/android-mobile-sdk-theme-customization-2.0.html for further understanding-->
+
     <!--    When syncThemeWithOS() API is set to true, Device is in Dark Mode, SalesIQ in Light mode with DarkActionBar-->
     <!--    <style name="Theme.SalesIQ.Base.Dark" parent="Theme.SalesIQ.Light.DarkActionBar">-->
     <!--        <item name="siq_launcher_backgroundcolor">@color/siq_launcher_background</item>-->
@@ -49,11 +51,16 @@
     <!--    </style>-->
 
     <!--    When syncThemeWithOS() API is set to false, SalesIQ in Dark mode-->
-    <style name="Theme.SalesIQ.Base" parent="Theme.SalesIQ.Dark">
-        <item name="siq_launcher_backgroundcolor">@color/red_variant</item>
-        <item name="siq_toolbar_backgroundcolor">@color/red_variant</item>
-    </style>
+    <!--    <style name="Theme.SalesIQ.Base" parent="Theme.SalesIQ.Dark">-->
+    <!--        <item name="siq_launcher_backgroundcolor">@color/red_variant</item>-->
+    <!--        <item name="siq_toolbar_backgroundcolor">@color/red_variant</item>-->
+    <!--    </style>-->
 
-    <!--    Refer https://www.zoho.com/salesiq/help/developer-guides/android-mobile-sdk-theme-customization-2.0.html for further understanding-->
+    <!--    You can also create your custom theme to the SDK by using the ZohoSalesIQ.setTheme API. -->
+    <!--    To apply your custom theme, make sure to set the syncThemeWithOS() to "false" and ZohoSalesIQ.setTheme(R.style.CustomTheme);-->
+    <!--    Refer https://www.zoho.com/salesiq/help/developer-guides/android-sdk-set-theme-v6-0-0.html for better understanding-->
+    <!--    <style name="CustomTheme" parent="Theme.SalesIQ.Light">-->
+    <!--        <item name="colorAccent">@color/red_variant</item>-->
+    <!--    </style>-->
 
 </resources>

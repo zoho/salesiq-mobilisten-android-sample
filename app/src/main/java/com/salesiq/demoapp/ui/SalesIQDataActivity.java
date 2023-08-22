@@ -19,6 +19,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.textfield.TextInputEditText;
@@ -26,12 +27,13 @@ import com.salesiq.demoapp.MobilistenUtil;
 import com.salesiq.demoapp.R;
 import com.zoho.livechat.android.VisitorChat;
 import com.zoho.livechat.android.listeners.ConversationListener;
-import com.zoho.livechat.android.listeners.FAQListener;
 import com.zoho.livechat.android.listeners.OperatorImageListener;
-import com.zoho.livechat.android.models.SalesIQArticle;
+import com.zoho.livechat.android.modules.knowledgebase.ui.entities.Resource;
+import com.zoho.livechat.android.modules.knowledgebase.ui.listeners.ResourcesListener;
 import com.zoho.salesiqembed.ZohoSalesIQ;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class SalesIQDataActivity extends AppCompatActivity {
 
@@ -145,24 +147,30 @@ public class SalesIQDataActivity extends AppCompatActivity {
 
         /*
          * This API can be used to fetch a list of articles from the SalesIQ knowledge base.
-         * Refer https://www.zoho.com/salesiq/help/developer-guides/android-sdk-faq-get-articles-v4-2-0.html
+         * Refer https://www.zoho.com/salesiq/help/developer-guides/android-sdk-KnowledgeBase-get-resources-v6-0-0.html
          */
-        getAllArticlesButton.setOnClickListener(v -> ZohoSalesIQ.FAQ.getArticles(new FAQListener() {
+
+        //To get a specific resource list, use the below parameters as filters.
+        String department_id = null; //The list of resource departments can be fetched using ZohoSalesIQ.KnowledgeBase.getResourceDepartments() API.
+        String category_id = null; //The list of resource categories can be fetched using ZohoSalesIQ.KnowledgeBase.getCategories() API.
+        String search_key = null; //Providing a search key will return a list of all resources with titles that contain the search key.
+        int page = 1; //Specify the number of pages. (Default value is 1)
+        int limit = 99; //Specify the number of articles to be fetched for a page. (Default & maximum value is 99)
+
+        getAllArticlesButton.setOnClickListener(v ->  ZohoSalesIQ.KnowledgeBase.getResources(ZohoSalesIQ.ResourceType.Articles, department_id, category_id, search_key, page, limit, new ResourcesListener() {
             @Override
-            public void onSuccess(ArrayList<SalesIQArticle> articles) {
-                if (articles.isEmpty()) {
-                    Log.d(TAG, "The list is empty");
+            public void onSuccess(@NonNull List<Resource> resources, boolean moreDataAvailable) {
+                if (resources.isEmpty()) {
+                    Log.d(TAG, "The resources list is empty");
                 }
 
-                for (SalesIQArticle article : articles) {
-                    Log.d(TAG, "SalesIQArticle { " + "title = '" + article.getTitle() + '\'' + ", articleId = '" + article.getId() + '\'' + ", categoryId = '" + article.getCategoryId() + '\'' + ", categoryName = '" + article.getCategoryName() + '\'' + ", departmentID = '" + article.getDepartmentId() + '\'' + ", viewCount = '" + article.getViewed() + '\'' + ", likedCount = '" + article.getLiked() + '\'' + ", dislikedCount = '" + article.getDisliked() + '\'' + ", createdTime = '" + article.getCreatedTime() + '\'' + ", modifiedTime = '" + article.getModifiedTime() + "'}");
+                for (Resource resource : resources) {
+                    Log.d(TAG, resource.toString());
                 }
-
-                Toast.makeText(SalesIQDataActivity.this, "Check logs", Toast.LENGTH_SHORT).show();
             }
 
             @Override
-            public void onFailure(int code, String message) {
+            public void onFailure(int code, @Nullable String message) {
                 Log.d(TAG, "Error while getting article objects, Code: " + code + " , Message: " + message);
                 Toast.makeText(SalesIQDataActivity.this, message, Toast.LENGTH_LONG).show();
             }

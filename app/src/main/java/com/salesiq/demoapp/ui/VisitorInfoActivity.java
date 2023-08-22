@@ -27,7 +27,7 @@ public class VisitorInfoActivity extends AppCompatActivity {
 
     private TextInputEditText visitorNameInput, visitorEmailInput, visitorPhoneInput;
     private EditText visitorQuestionInput, infoKeyInput, infoValueInput;
-    private Button startChatButton, setVisitorLocationButton;
+    private Button startChatButton, setVisitorLocationButton, setVisitorDetailsButton;
     public static ArrayList<String> departmentsArray = new ArrayList<>();
     String name, email, phone, question, infoKey, infoValue;
     static String department;
@@ -41,6 +41,7 @@ public class VisitorInfoActivity extends AppCompatActivity {
         visitorQuestionInput = findViewById(R.id.visitor_question_input);
         infoKeyInput = findViewById(R.id.set_info_key_input);
         infoValueInput = findViewById(R.id.set_info_value_input);
+        setVisitorDetailsButton = findViewById(R.id.set_visitor_details_button);
         setVisitorLocationButton = findViewById(R.id.set_visitor_location_button);
         startChatButton = findViewById(R.id.start_chat_button);
 
@@ -105,29 +106,35 @@ public class VisitorInfoActivity extends AppCompatActivity {
             ZohoSalesIQ.Chat.setDepartment(department);
         });
 
-        startChatButton.setOnClickListener(v -> {
+        setVisitorDetailsButton.setOnClickListener(v -> {
             name = visitorNameInput.getText().toString().trim();
             email = visitorEmailInput.getText().toString().trim();
             phone = visitorPhoneInput.getText().toString().trim();
-            question = visitorQuestionInput.getText().toString().trim();
+
+            ZohoSalesIQ.Visitor.setName(name); // This API lets you set the name of the visitor
+            ZohoSalesIQ.Visitor.setEmail(email); // This API lets you set the email of the visitor
+            ZohoSalesIQ.Visitor.setContactNumber(phone); // This API lets you set the contact number of the visitor
+
             infoKey = (infoKeyInput.getText().toString().trim().length() > 0) ? infoKeyInput.getText().toString().trim() : null;
             infoValue = (infoValueInput.getText().toString().trim().length() > 0) ? infoValueInput.getText().toString().trim() : null;
 
-            if (department != null && !question.isEmpty()) {
-                ZohoSalesIQ.Visitor.setName(name); // This API lets you set the name of the visitor
-                ZohoSalesIQ.Visitor.setEmail(email); // This API lets you set the email of the visitor
-                ZohoSalesIQ.Visitor.setContactNumber(phone); // This API lets you set the contact number of the visitor
+            /*
+             * This API would let you add additional information about the visitors and display it to the operators of your firm
+             * in the pane right beside their chat windows while conversing with the visitors.
+             * Refer https://www.zoho.com/salesiq/help/developer-guides/android-sdk-visitor-info-v4-2-0.html
+             */
+            ZohoSalesIQ.Visitor.addInfo(infoKey, infoValue);
+        });
 
-                /*
-                 * This API would let you add additional information about the visitors and display it to the operators of your firm
-                 * in the pane right beside their chat windows while conversing with the visitors.
-                 * Refer https://www.zoho.com/salesiq/help/developer-guides/android-sdk-visitor-info-v4-2-0.html
-                 */
-                ZohoSalesIQ.Visitor.addInfo(infoKey, infoValue);
-
+        startChatButton.setOnClickListener(v -> {
+            question = visitorQuestionInput.getText().toString().trim();
+            if (department != null && !question.isEmpty())
+            {
                 ZohoSalesIQ.Visitor.startChat(question); // This API can be used to automatically initiate a chat with the given message
-            } else {
-                Toast.makeText(VisitorInfoActivity.this, "Please don't leave the fields empty", Toast.LENGTH_LONG).show();
+            }
+            else
+            {
+                Toast.makeText(VisitorInfoActivity.this, "Please don't leave the mandatory fields empty", Toast.LENGTH_LONG).show();
             }
         });
     }

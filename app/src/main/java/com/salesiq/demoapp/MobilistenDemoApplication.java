@@ -25,7 +25,6 @@ public class MobilistenDemoApplication extends Application {
      * get the app key and access key for your application from the SalesIQ portal.
      */
     String zohoSalesIQAppKey = <your_app_key>,zohoSalesIQAccessKey = <your_access_key>;
-
     @Override
     public void onCreate() {
 
@@ -61,6 +60,15 @@ public class MobilistenDemoApplication extends Application {
                 ZohoSalesIQ.syncThemeWithOS(true);
 
                 /*
+                 *  You can also apply your custom theme to the Mobilisten by using the setTheme() API.
+                 *  To apply your custom theme, make sure to set the syncThemeWithOS() to "false".
+                 *  Refer res/values/styles.xml and https://www.zoho.com/salesiq/help/developer-guides/android-sdk-set-theme-v6-0-0.html
+                 *
+                 *  ZohoSalesIQ.syncThemeWithOS(false);
+                 *  ZohoSalesIQ.setTheme(com.salesiq.demoapp.R.style.CustomTheme);
+                 */
+
+                /*
                  * The Chat.setVisibility API lets you toggle the function of various components.
                  * The sample code below is used to enable/disable the pre-chat form before starting a chat
                  * Refer https://www.zoho.com/salesiq/help/developer-guides/android-sdk-chat-visibility-v4-2-0.html
@@ -92,10 +100,10 @@ public class MobilistenDemoApplication extends Application {
                 ZohoSalesIQ.Conversation.setTitle("Mobilisten Live Support"); // This API is used to set title in the header of the conversation history section
 
                 /*
-                  You can use this API to show/hide the FAQ option in the SalesIQ SDK.
-                  Refer https://www.zoho.com/salesiq/help/developer-guides/android-sdk-faq-visibility-v4-2-0.html
+                  You can use this API to show/hide the Knowledgebase option in the SalesIQ SDK.
+                  Refer https://www.zoho.com/salesiq/help/developer-guides/android-sdk-KnowledgeBase-set-visibility-v6-0-0.html
                  */
-                ZohoSalesIQ.FAQ.setVisibility(true);
+                ZohoSalesIQ.KnowledgeBase.setVisibility(ZohoSalesIQ.ResourceType.Articles, true);
 
                 mobilistenInitializationStateMutableLiveData.postValue(new Result(Result.MobilistenInitStatus.SUCCESS, "SUCCESS"));
             }
