@@ -48,8 +48,8 @@ class MainActivity : AppCompatActivity() {
             /*
              *  This API is used to open the SalesIQ SDK from the custom launcher view
              */
-            salesiqImageView.setOnClickListener { ZohoLiveChat.Chat.show() }
-            openSalesiqButton.setOnClickListener { ZohoLiveChat.Chat.show() }
+            salesiqImageView.setOnClickListener { ZohoSalesIQ.Chat.show() }
+            openSalesiqButton.setOnClickListener { ZohoSalesIQ.Chat.show() }
 
             loginButton.setOnClickListener {
                 val visitorID = visitorIdInput.text.toString().trim { it <= ' ' }
@@ -121,25 +121,25 @@ class MainActivity : AppCompatActivity() {
             /*
              * You can use this API to show/hide the launcher in the SalesIQ SDK.
              */
-            showLauncherButton.setOnClickListener { ZohoSalesIQ.showLauncher(true) }
-            hideLauncherButton.setOnClickListener { ZohoSalesIQ.showLauncher(false) }
+            showLauncherButton.setOnClickListener { ZohoSalesIQ.Launcher.show(ZohoSalesIQ.Launcher.VisibilityMode.ALWAYS) }
+            hideLauncherButton.setOnClickListener { ZohoSalesIQ.Launcher.show(ZohoSalesIQ.Launcher.VisibilityMode.NEVER) }
 
             /*
              * This API lets you configure the language preference for the embedded chat widget.
              * Refer https://www.zoho.com/salesiq/help/developer-guides/android-sdk-chat-language-v4-2-0.html
              */
             englishLanguageTextview.setOnClickListener {
-                ZohoLiveChat.Chat.setLanguage("en")
+                ZohoSalesIQ.Chat.setLanguage("en")
                 Toast.makeText(this@MainActivity, "English language is set", Toast.LENGTH_SHORT)
                     .show()
             }
             frenchLanguageTextview.setOnClickListener {
-                ZohoLiveChat.Chat.setLanguage("fr")
+                ZohoSalesIQ.Chat.setLanguage("fr")
                 Toast.makeText(this@MainActivity, "French language is set", Toast.LENGTH_SHORT)
                     .show()
             }
             japaneseLanguageTextview.setOnClickListener {
-                ZohoLiveChat.Chat.setLanguage("ja")
+                ZohoSalesIQ.Chat.setLanguage("ja")
                 Toast.makeText(this@MainActivity, "Japanese language is set", Toast.LENGTH_SHORT)
                     .show()
             }

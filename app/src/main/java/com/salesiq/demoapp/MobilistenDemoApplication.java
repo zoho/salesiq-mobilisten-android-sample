@@ -11,6 +11,7 @@ import com.zoho.commons.ChatComponent;
 import com.zoho.commons.Fonts;
 import com.zoho.commons.InitConfig;
 import com.zoho.livechat.android.R;
+import com.zoho.livechat.android.ZohoLiveChat;
 import com.zoho.livechat.android.listeners.InitListener;
 import com.zoho.salesiqembed.ZohoSalesIQ;
 
@@ -51,7 +52,7 @@ public class MobilistenDemoApplication extends Application {
             public void onInitSuccess() {
                 Log.d(TAG, "INITIALISATION SUCCESS");
 
-                ZohoSalesIQ.showLauncher(true); //This API can be used to control the visibility of the launcher
+                ZohoSalesIQ.Launcher.show(ZohoSalesIQ.Launcher.VisibilityMode.ALWAYS); //This API can be used to control the visibility of the launcher
 
                 /*
                  * SalesIQ SDK follows the system theme by default. You can opt-out of this option by setting the value to false.

@@ -2,9 +2,9 @@ package com.salesiq.demoapp.notification;
 
 import android.util.Log;
 
+import com.google.firebase.BuildConfig;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
-import com.salesiq.demoapp.BuildConfig;
 import com.zoho.salesiqembed.ZohoSalesIQ;
 
 import java.util.Map;

@@ -56,6 +56,11 @@ public class SalesIQListeners {
             }
 
             @Override
+            public void handleCustomLauncherVisibility(boolean visible) {
+                Log.d(TAG, "HANDLE CUSTOM LAUNCHER VISIBILITY:- "+visible);
+            }
+
+            @Override
             public void handleBotTrigger() { Log.d(TAG, "HANDLE BOT TRIGGER EVENT CALLED"); }
         });
 

@@ -157,7 +157,7 @@ public class SalesIQDataActivity extends AppCompatActivity {
         int page = 1; //Specify the number of pages. (Default value is 1)
         int limit = 99; //Specify the number of articles to be fetched for a page. (Default & maximum value is 99)
 
-        getAllArticlesButton.setOnClickListener(v ->  ZohoSalesIQ.KnowledgeBase.getResources(ZohoSalesIQ.ResourceType.Articles, department_id, category_id, search_key, page, limit, new ResourcesListener() {
+        getAllArticlesButton.setOnClickListener(v ->  ZohoSalesIQ.KnowledgeBase.getResources(ZohoSalesIQ.ResourceType.Articles, department_id, category_id, search_key, page, limit, true, new ResourcesListener() {
             @Override
             public void onSuccess(@NonNull List<Resource> resources, boolean moreDataAvailable) {
                 if (resources.isEmpty()) {

@@ -17,7 +17,7 @@ Add the following maven repository in the **settings.gradle** file or root build
 Add the following dependency in the app's build.gradle file (**app/build.gradle**).
 
     dependencies {
-       implementation 'com.zoho.salesiq:mobilisten:6.0.2'
+       implementation 'com.zoho.salesiq:mobilisten:7.0.0'
     }
 
 ![enter image description here](https://www.zohowebstatic.com/sites/zweb/images/salesiq/step-5---dependency-android-sdk.png)
@@ -41,7 +41,7 @@ Now, initialize the SDK by adding the following line in the **onCreate()** metho
             ZohoSalesIQ.init(this, "your app key", "your access key", initConfig, new InitListener() {
                 @Override
                 public void onInitSuccess() {
-                     ZohoSalesIQ.showLauncher(true); //by default launcher will be hidden and it can be enabled with this line.
+                     ZohoSalesIQ.Launcher.show(ZohoSalesIQ.Launcher.VisibilityMode.ALWAYS); //by default launcher will be hidden and it can be enabled with this line.
                 }
 
                 @Override
