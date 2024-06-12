@@ -48,8 +48,8 @@ class MainActivity : AppCompatActivity() {
             /*
              *  This API is used to open the SalesIQ SDK from the custom launcher view
              */
-            salesiqImageView.setOnClickListener { ZohoSalesIQ.Chat.show() }
-            openSalesiqButton.setOnClickListener { ZohoSalesIQ.Chat.show() }
+            salesiqImageView.setOnClickListener { ZohoSalesIQ.present() }
+            openSalesiqButton.setOnClickListener { ZohoSalesIQ.present() }
 
             loginButton.setOnClickListener {
                 val visitorID = visitorIdInput.text.toString().trim { it <= ' ' }

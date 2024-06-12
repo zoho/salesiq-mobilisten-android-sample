@@ -1,6 +1,6 @@
 [
   {
-    "mobilistenVersion": "7.1.1",
+    "mobilistenVersion": "8.0.0",
     "minSdkVersion": "21",
     "targetSdkVersion": "27"
   }
