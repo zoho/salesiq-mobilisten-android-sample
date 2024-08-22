@@ -1,0 +1,17 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.MobilistenDemo" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <item name="colorPrimary">@color/siq_launcher_background</item>
+        <item name="colorPrimaryVariant">@color/blue_variant</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorSecondary">@color/blue_variant</item>
+        <item name="colorOnSecondary">#D9D9D9</item>
+        <item name="android:textColorPrimary">@color/primary_text_light</item>
+        <item name="android:textColorSecondary">@color/secondary_text_light</item>
+        <item name="outlineColor">@color/outline_light</item>
+        <item name="separatorColor">@color/separator_light</item>
+        <item name="android:statusBarColor" tools:targetApi="l">
+            @color/siq_primarydark_darkactionbar
+        </item>
+    </style>
+</resources>

@@ -1,31 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.zoho.salesiq.androidsdk">
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.salesiq.demoapp">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
-        android:name=".MyApplication"
-        android:allowBackup="false"
-        android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:name=".MobilistenDemoApplication"
+        android:allowBackup="true"
+        android:icon="@drawable/ic_mobilisten_demo_app_icon"
+        android:label="@string/demo_app_name"
+        android:roundIcon="@drawable/ic_mobilisten_demo_app_icon"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".PrechatFormActivity"></activity>
-        <activity android:name=".MainActivity">
+        android:theme="@style/Theme.MobilistenDemo"
+        tools:targetApi="31">
+        <activity
+            android:name=".ui.SalesIQDataActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.VisitorInfoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.MainActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
-        <service android:name=".notification.MyFirebaseMessagingService">
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
+
+        <service
+            android:name=".notification.MyFirebaseMessagingService"
+            android:exported="true">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
-
-        <activity android:name=".SecondActivity" />
     </application>
 
 </manifest>

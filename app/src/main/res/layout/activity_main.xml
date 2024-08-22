@@ -1,43 +1,487 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:layout_height="wrap_content"
+    tools:context=".ui.MainActivity">
 
-    <LinearLayout
+    <ScrollView
+        android:id="@+id/activity_main_scrollview"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:layout_centerVertical="true"
-        android:orientation="vertical">
-        <ImageView
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:src="@drawable/ic_salesiq_icon"/>
-        <Button
-            android:layout_width="250dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:id="@+id/login_button"
-            android:text="Login"/>
-        <Button
-            android:layout_width="250dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:id="@+id/logout_button"
-            android:text="Logout"/>
-        <Button
-            android:layout_width="250dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:id="@+id/next_button"
-            android:text="Navigate"/>
-        <Button
-            android:layout_width="250dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:id="@+id/prechat_button"
-            android:text="Pre-chat Form"/>
-    </LinearLayout>
-</RelativeLayout>
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/main_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/salesiq_image_view"
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                android:layout_marginStart="168dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="168dp"
+                android:src="@drawable/ic_salesiq_icon"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/failure_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+                android:fontFamily="@font/roboto"
+                android:textAlignment="center"
+                android:textColor="@color/error_color"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/salesiq_image_view" />
+
+            <Button
+                android:id="@+id/open_salesiq_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+                android:elegantTextHeight="false"
+                android:enabled="false"
+                android:fontFamily="@font/roboto_medium"
+                android:letterSpacing="0.05"
+                android:paddingLeft="24dp"
+                android:paddingTop="10dp"
+                android:paddingRight="24dp"
+                android:paddingBottom="10dp"
+                android:text="@string/demo_app_open_salesiq_support"
+                android:textAllCaps="false"
+                android:textColor="@color/button_text_color"
+                android:textSize="14sp"
+                app:cornerRadius="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/failure_text" />
+
+            <TextView
+                android:id="@+id/launcherVisibilityTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="10dp"
+                android:fontFamily="@font/roboto"
+                android:text="@string/demo_app_launcher_visibility"
+                android:textAllCaps="false"
+                android:textColor="?android:attr/textColorPrimary"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="@+id/launcher_visibility_radio_group"
+                app:layout_constraintEnd_toStartOf="@+id/launcher_visibility_radio_group"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/launcher_visibility_radio_group" />
+
+            <RadioGroup
+                android:id="@+id/launcher_visibility_radio_group"
+                android:layout_width="0dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="20dp"
+                android:background="@drawable/toggle_outline"
+                android:checkedButton="@id/show_launcher_button"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/logout_button"
+                app:layout_constraintTop_toBottomOf="@+id/open_salesiq_button"
+                tools:ignore="MissingConstraints">
+
+                <RadioButton
+                    android:id="@+id/show_launcher_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="1dp"
+                    android:layout_marginTop="1dp"
+                    android:layout_marginBottom="1dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/toggle_widget_left_background"
+                    android:backgroundTint="@color/toggle_button_background_color"
+                    android:button="@null"
+                    android:fontFamily="@font/roboto"
+                    android:gravity="center"
+                    android:text="@string/demo_app_show"
+                    android:textColor="@color/toggle_button_textcolor"
+                    android:textSize="14sp"
+                    tools:ignore="TouchTargetSizeCheck" />
+
+                <RadioButton
+                    android:id="@+id/hide_launcher_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="1dp"
+                    android:layout_marginEnd="1dp"
+                    android:layout_marginBottom="1dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/toggle_widget_right_background"
+                    android:backgroundTint="@color/toggle_button_background_color"
+                    android:button="@null"
+                    android:fontFamily="@font/roboto"
+                    android:gravity="center"
+                    android:text="@string/demo_app_hide"
+                    android:textColor="@color/toggle_button_textcolor"
+                    android:textSize="14sp"
+                    tools:ignore="TouchTargetSizeCheck" />
+            </RadioGroup>
+
+            <TextView
+                android:id="@+id/launcherPositionTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="10dp"
+                android:fontFamily="@font/roboto"
+                android:text="@string/demo_app_launcher_position"
+                android:textAllCaps="false"
+                android:textColor="?android:attr/textColorPrimary"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="@+id/launcher_properties_radio_group"
+                app:layout_constraintEnd_toStartOf="@+id/launcher_properties_radio_group"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/launcher_properties_radio_group" />
+
+            <RadioGroup
+                android:id="@+id/launcher_properties_radio_group"
+                android:layout_width="0dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+                android:background="@drawable/toggle_outline"
+                android:checkedButton="@id/launcher_position_floating_button"
+                android:orientation="horizontal"
+                android:paddingHorizontal="1dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/logout_button"
+                app:layout_constraintTop_toBottomOf="@+id/launcher_visibility_radio_group"
+                tools:ignore="MissingConstraints">
+
+                <RadioButton
+                    android:id="@+id/launcher_position_floating_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="1dp"
+                    android:layout_marginEnd="1dp"
+                    android:layout_marginBottom="1dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/toggle_widget_left_background"
+                    android:backgroundTint="@color/toggle_button_background_color"
+                    android:button="@null"
+                    android:fontFamily="@font/roboto"
+                    android:gravity="center"
+                    android:text="@string/demo_app_launcher_mode_floating"
+                    android:textColor="@color/toggle_button_textcolor"
+                    android:textSize="14sp"
+                    tools:ignore="TouchTargetSizeCheck" />
+
+                <RadioButton
+                    android:id="@+id/launcher_position_static_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="1dp"
+                    android:layout_marginTop="1dp"
+                    android:layout_marginBottom="1dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/toggle_widget_right_background"
+                    android:backgroundTint="@color/toggle_button_background_color"
+                    android:button="@null"
+                    android:fontFamily="@font/roboto"
+                    android:gravity="center"
+                    android:text="@string/demo_app_launcher_mode_static"
+                    android:textColor="@color/toggle_button_textcolor"
+                    android:textSize="14sp"
+                    tools:ignore="TouchTargetSizeCheck" />
+            </RadioGroup>
+
+            <View
+                android:id="@+id/divider"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+                android:background="?attr/separatorColor"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/launcher_properties_radio_group"
+                tools:ignore="MissingConstraints" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/visitor_id_input_layout"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+                app:boxStrokeColor="@color/input_box_stroke_color"
+                app:boxStrokeWidth="1dp"
+                app:boxStrokeWidthFocused="2dp"
+                app:counterEnabled="true"
+                app:counterMaxLength="100"
+                app:counterTextColor="?android:attr/textColorSecondary"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/divider">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/visitor_id_input"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto"
+                    android:gravity="center_vertical"
+                    android:hint="@string/demo_app_enter_visitor_unique_id"
+                    android:inputType="text"
+                    android:maxLength="100"
+                    android:textColorHint="#4D4D4D"
+                    android:textCursorDrawable="@drawable/cursor_edittext"
+                    android:textSize="16sp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Button
+                android:id="@+id/login_button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:elegantTextHeight="false"
+                android:fontFamily="@font/roboto_medium"
+                android:letterSpacing="0.05"
+                android:paddingLeft="24dp"
+                android:paddingTop="10dp"
+                android:paddingRight="24dp"
+                android:paddingBottom="10dp"
+                android:text="@string/demo_app_login"
+                android:textAllCaps="false"
+                android:textColor="@color/button_text_color"
+                android:textSize="14sp"
+                app:cornerRadius="20dp"
+                app:layout_constraintEnd_toStartOf="@+id/logout_button"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/visitor_id_input_layout" />
+
+            <Button
+                android:id="@+id/logout_button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="20dp"
+                android:elegantTextHeight="false"
+                android:fontFamily="@font/roboto_medium"
+                android:letterSpacing="0.05"
+                android:paddingLeft="24dp"
+                android:paddingTop="10dp"
+                android:paddingRight="24dp"
+                android:paddingBottom="10dp"
+                android:text="@string/demo_app_logout"
+                android:textAllCaps="false"
+                android:textColor="@color/button_text_color"
+                android:textSize="14sp"
+                app:cornerRadius="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/login_button"
+                app:layout_constraintTop_toTopOf="@+id/login_button" />
+
+            <View
+                android:id="@+id/divider2"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="20dp"
+                android:background="?attr/separatorColor"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/login_button"
+                tools:ignore="MissingConstraints" />
+
+            <Button
+                android:id="@+id/visitor_details_page_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="20dp"
+                android:elegantTextHeight="false"
+                android:enabled="false"
+                android:fontFamily="@font/roboto_medium"
+                android:letterSpacing="0.05"
+                android:paddingLeft="24dp"
+                android:paddingTop="10dp"
+                android:paddingRight="24dp"
+                android:paddingBottom="10dp"
+                android:text="@string/demo_app_set_visitor_details"
+                android:textAllCaps="false"
+                android:textColor="@color/button_text_color"
+                android:textSize="14sp"
+                app:cornerRadius="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/divider2" />
+
+            <TextView
+                android:id="@+id/set_language_text_view"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="18dp"
+                android:fontFamily="@font/roboto"
+                android:text="@string/demo_app_support_language"
+                android:textColor="?android:attr/textColorPrimary"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toStartOf="@+id/launcher_properties_radio_group"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/visitor_details_page_button" />
+
+            <TextView
+                android:id="@+id/english_language_textview"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto_medium"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:text="@string/demo_app_locale_english"
+                android:textColor="?android:attr/colorPrimary"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="@+id/set_language_text_view"
+                app:layout_constraintEnd_toStartOf="@+id/vertical_divider1"
+                app:layout_constraintTop_toTopOf="@+id/set_language_text_view"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <TextView
+                android:id="@+id/vertical_divider1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/demo_app_separator"
+                android:textColor="?attr/outlineColor"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="@+id/english_language_textview"
+                app:layout_constraintEnd_toStartOf="@+id/french_language_textview"
+                app:layout_constraintTop_toTopOf="@+id/english_language_textview" />
+
+            <TextView
+                android:id="@+id/french_language_textview"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto_medium"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:text="@string/demo_app_locale_french"
+                android:textColor="?android:attr/colorPrimary"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="@+id/set_language_text_view"
+                app:layout_constraintEnd_toStartOf="@+id/vertical_divider"
+                app:layout_constraintTop_toTopOf="@+id/set_language_text_view"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <TextView
+                android:id="@+id/vertical_divider"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/demo_app_separator"
+                android:textColor="?attr/outlineColor"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="@+id/french_language_textview"
+                app:layout_constraintEnd_toStartOf="@+id/japanese_language_textview"
+                app:layout_constraintTop_toTopOf="@+id/french_language_textview" />
+
+            <TextView
+                android:id="@+id/japanese_language_textview"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="20dp"
+                android:fontFamily="@font/roboto_medium"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:text="@string/demo_app_locale_japanese"
+                android:textColor="@color/siq_launcher_background"
+                android:textSize="16sp"
+                android:textStyle="normal"
+                app:layout_constraintBottom_toBottomOf="@+id/set_language_text_view"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/set_language_text_view"
+                app:layout_constraintVertical_bias="0.0" />
+
+
+            <View
+                android:id="@+id/divider3"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+                android:background="?attr/separatorColor"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/set_language_text_view"
+                tools:ignore="MissingConstraints" />
+
+            <Button
+                android:id="@+id/track_visitor_activity_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="20dp"
+                android:elegantTextHeight="false"
+                android:fontFamily="@font/roboto_medium"
+                android:letterSpacing="0.05"
+                android:paddingLeft="24dp"
+                android:paddingTop="10dp"
+                android:paddingRight="24dp"
+                android:paddingBottom="10dp"
+                android:text="@string/demo_app_track_visitor_activity"
+                android:textAllCaps="false"
+                android:textColor="@color/button_text_color"
+                android:textSize="14sp"
+                app:cornerRadius="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/divider3" />
+
+            <Button
+                android:id="@+id/get_salesiq_data_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="100dp"
+                android:elegantTextHeight="false"
+                android:fontFamily="@font/roboto_medium"
+                android:letterSpacing="0.05"
+                android:paddingLeft="24dp"
+                android:paddingTop="10dp"
+                android:paddingRight="24dp"
+                android:paddingBottom="10dp"
+                android:text="@string/demo_app_fetch_salesiq_data"
+                android:textAllCaps="false"
+                android:textColor="@color/button_text_color"
+                android:textSize="14sp"
+                app:cornerRadius="20dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/track_visitor_activity_button" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
