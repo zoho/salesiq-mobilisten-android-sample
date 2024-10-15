@@ -1,17 +1,45 @@
 
 ## Installing Mobilisten (ZohoSalesIQ Android SDK)
 
-#### Requirements
-The SDK supports Android 5.0 (API level 21) and above.
+### Requirements
+Ensure that your project meets the following requirements:
+   - Minimum Android Version: Android 5.0 (Lollipop) (API Level 21)
+   - Compile SDK Version: 34 (Android 14)
+   - Required Permissions:
+      - android.permission.INTERNET (Required for network operations)
 
 ###### Step 1:
-Add the following maven repository in the **settings.gradle** file or root build.gradle file (**/build.gradle**).
+Add the following maven repository in the `settings.gradle` file or root build.gradle file `build.gradle`.
 
-     allprojects {
-        repositories {
-           maven { url 'https://maven.zohodl.com' }
-        }
-     }
+For Gradle version 6.7 and below
+```Gradle
+// Add the following to your project's root build.gradle file.
+
+allprojects {
+   repositories {
+      google()
+      mavenCentral()
+      // ...
+      maven { url 'https://maven.zohodl.com' }
+   }
+}
+```
+
+For Gradle version 6.8 and above
+```Gradle
+// Add the following to your settings.gradle file.
+
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+        // Add the Zoho Maven URL here
+        maven { url 'https://maven.zohodl.com' }
+    }
+}
+```
+     
 ![enter image description here](https://www.zohowebstatic.com/sites/zweb/images/salesiq/step-4---settings.gradle-android-sdk.png)
 ###### Step 2:
 Add the following dependency in the app's build.gradle file (**app/build.gradle**).
