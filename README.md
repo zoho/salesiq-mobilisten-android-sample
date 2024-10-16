@@ -88,7 +88,7 @@ Also, in the **AndroidManifest.xml** file, add the application class name in the
     </application>​
 ###### Step 6:
 ### Proguard rules:
-If you have enabled ProGuard(minifyEnabled) R8, then please add the following rules in your `proguard-rules.pro` file in your `android` folder.
+If you have enabled ProGuard(minifyEnabled) R8, then please add the following rules in your `proguard-rules.pro` file in your `project/android` folder.
 ```
 -dontwarn kotlinx.parcelize.Parcelize
 ```
