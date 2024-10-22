@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    compileSdk 33
+    compileSdk 34
 
     defaultConfig {
         applicationId "com.salesiq.demoapp"
@@ -45,7 +45,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-core:16.0.9'
     implementation 'com.google.firebase:firebase-messaging:18.0.0'
 
-    implementation 'com.zoho.salesiq:mobilisten:8.0.5'
+    implementation 'com.zoho.salesiq:mobilisten:8.0.6'
 }
 
 apply plugin: 'com.google.gms.google-services'
