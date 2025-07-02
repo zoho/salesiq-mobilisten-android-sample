@@ -4,7 +4,7 @@
 ### Requirements
 Ensure that your project meets the following requirements:
    - Minimum Android Version: Android 5.0 (Lollipop) (API Level 21)
-   - Compile SDK Version: 34 (Android 14)
+   - Compile SDK Version: 35 (Android 15)
    - Required Permissions:
       - android.permission.INTERNET (Required for network operations)
 
@@ -45,7 +45,7 @@ dependencyResolutionManagement {
 Add the following dependency in the app's build.gradle file (**app/build.gradle**).
 
     dependencies {
-       implementation 'com.zoho.salesiq:mobilisten:8.2.1-beta01'
+       implementation 'com.zoho.salesiq:mobilisten:8.2.1'
     }
 
 ![enter image description here](https://www.zohowebstatic.com/sites/zweb/images/salesiq/step-5---dependency-android-sdk.png)
