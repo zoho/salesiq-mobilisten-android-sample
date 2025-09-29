@@ -11,7 +11,6 @@ import com.zoho.commons.ChatComponent;
 import com.zoho.commons.Fonts;
 import com.zoho.commons.InitConfig;
 import com.zoho.livechat.android.R;
-import com.zoho.livechat.android.ZohoLiveChat;
 import com.zoho.livechat.android.listeners.InitListener;
 import com.zoho.salesiqembed.ZohoSalesIQ;
 
@@ -26,6 +25,7 @@ public class MobilistenDemoApplication extends Application {
      * get the app key and access key for your application from the SalesIQ portal.
      */
     String zohoSalesIQAppKey = <your_app_key>,zohoSalesIQAccessKey = <your_access_key>;
+
     @Override
     public void onCreate() {
 

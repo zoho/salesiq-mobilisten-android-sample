@@ -43,7 +43,7 @@
                 android:layout_marginEnd="20dp"
                 android:fontFamily="@font/roboto"
                 android:textAlignment="center"
-                android:textColor="@color/error_color"
+                android:textColor="@color/design_default_color_error"
                 android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
