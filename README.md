@@ -45,8 +45,7 @@ dependencyResolutionManagement {
 Add the following dependency in the app's build.gradle file (**app/build.gradle**).
 
     dependencies {
-       implementation 'com.zoho.salesiq:mobilisten:9.0.0-beta01'
-       implementation 'com.zoho.salesiq:mobilisten-calls:0.1.0'
+       implementation 'com.zoho.salesiq:mobilisten:8.3.5'
     }
 
 ![enter image description here](https://www.zohowebstatic.com/sites/zweb/images/salesiq/step-5---dependency-android-sdk.png)
