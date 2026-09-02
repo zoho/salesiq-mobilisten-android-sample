@@ -15,4 +15,21 @@
     <color name="primary_text_dark">#E5E5E5</color>
     <color name="secondary_text_light">#4D4D4D</color>
     <color name="secondary_text_dark">#B2B2B2</color>
+
+    <color name="background">@color/controlBackground</color>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="black87">#DE000000</color>
+    <color name="gray">@android:color/darker_gray</color>
+    <color name="app_primary_red">#FFE50914</color>
+    <color name="app_primary">@color/app_primary_red</color>
+    <color name="app_primary_red_700">#B3E50914</color>
+    <color name="app_primary_red_200">#33E50914</color>
+    <color name="transparent">@color/white</color>
+    <color name="blue">#FF005a9c</color>
+    <color name="lightBlue">#ff6691c4</color>
+    <color name="lighterBlue">#ffcdd8ec</color>
+    <color name="controlBackground">#ffffffff</color>
+    <color name="app_primary_green">#76FF03</color>
 </resources>

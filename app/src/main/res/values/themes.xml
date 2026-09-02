@@ -1,6 +1,6 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <!-- Base application theme. -->
-    <style name="Theme.MobilistenDemo" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+    <style name="Theme.MobilistenDemo" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="colorPrimary">@color/siq_launcher_background</item>
         <item name="colorPrimaryVariant">@color/blue_variant</item>
         <item name="colorOnPrimary">@color/white</item>
@@ -10,8 +10,45 @@
         <item name="android:textColorSecondary">@color/secondary_text_light</item>
         <item name="outlineColor">@color/outline_light</item>
         <item name="separatorColor">@color/separator_light</item>
-        <item name="android:statusBarColor" tools:targetApi="l">
-            @color/siq_primarydark_darkactionbar
-        </item>
+        <!--        <item name="android:statusBarColor">@color/siq_primarydark_darkactionbar</item>-->
+        <!--        <item name="android:enforceNavigationBarContrast" tools:targetApi="q">false</item>-->
+        <!--        <item name="android:enforceStatusBarContrast" tools:targetApi="q">true</item>-->
+    </style>
+
+    <!--    <style name="Theme.SalesIQ.Base.DarkActionBar" parent="Theme.SalesIQ.Light.DarkActionBar">-->
+        <!--                <item name="siq_chat_screenshot_preview_icon_background_color">@color/red</item>-->
+        <!--                <item name="siq_statusbar_color">@color/red</item>-->
+        <!--                <item name="colorAccent">@color/red</item>-->
+        <!--                <item name="colorAccent">#FF0000</item>-->
+        <!--        <item name="siq_forms_statusbar_color">@color/teal_200</item>-->
+        <!--        <item name="siq_image_viewer_status_bar_color">@color/teal_700</item>-->
+        <!--        <item name="siq_image_viewer_toolbar_background_color">@color/app_primary_green</item>-->
+        <!--        <item name="siq_toolbar_backgroundcolor">@color/siq_launcher_background</item>-->
+        <!--        <item name="siq_launcher_backgroundcolor">@color/siq_launcher_background</item>-->
+    <!--    </style>-->
+
+    <!--    When syncThemeWithOS is set to false, SalesIQ in Light mode-->
+    <style name="Theme.SalesIQ.Base" parent="Theme.SalesIQ.Light">
+        <item name="siq_launcher_backgroundcolor">@color/teal_700</item>
+        <item name="siq_toolbar_backgroundcolor">@color/teal_700</item>
+    </style>
+
+    <style name="RowLabel">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:padding">4dp</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="RowValue">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:padding">4dp</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:maxLines">5</item>
+        <item name="android:ellipsize">none</item>
+        <item name="android:breakStrategy">simple</item>
     </style>
 </resources>

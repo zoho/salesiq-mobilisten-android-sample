@@ -1,193 +1,227 @@
 package com.salesiq.demoapp.ui
 
-import android.content.Intent
+import android.Manifest
+import android.content.pm.PackageManager
+import android.os.Build
 import android.os.Bundle
-import android.util.Log
-import android.view.View
-import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.content.res.AppCompatResources
-import com.salesiq.demoapp.MobilistenDemoApplication
-import com.salesiq.demoapp.Result
-
-import com.salesiq.demoapp.databinding.ActivityMainBinding
-import com.zoho.commons.LauncherModes
-import com.zoho.commons.LauncherProperties
-import com.zoho.livechat.android.ZohoLiveChat
-import com.zoho.livechat.android.config.DeviceConfig
-import com.zoho.livechat.android.listeners.RegisterListener
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.activity.enableEdgeToEdge
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.content.ContextCompat
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.ui.Modifier
+import androidx.navigation.NavType
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.currentBackStackEntryAsState
+import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
+import com.salesiq.demoapp.state.SettingsStore
 import com.zoho.salesiqembed.ZohoSalesIQ
-import java.util.*
+import com.salesiq.demoapp.ui.components.ToastHost
+import com.salesiq.demoapp.ui.screens.CallDetailScreen
+import com.salesiq.demoapp.ui.screens.CallsScreen
+import com.salesiq.demoapp.ui.screens.CategoryDrillInScreen
+import com.salesiq.demoapp.ui.store.StoreScreen
+import com.salesiq.demoapp.ui.store.StoreProductScreen
+import com.salesiq.demoapp.ui.store.StoreCartScreen
+import com.salesiq.demoapp.ui.store.StoreOrderDetailScreen
+import com.salesiq.demoapp.ui.screens.ChatDetailScreen
+import com.salesiq.demoapp.ui.screens.ChatScreen
+import com.salesiq.demoapp.ui.screens.CoreScreen
+import com.salesiq.demoapp.ui.screens.DepartmentPickerScreen
+import com.salesiq.demoapp.ui.screens.EventDetailScreen
+import com.salesiq.demoapp.ui.screens.EventsScreen
+import com.salesiq.demoapp.ui.screens.HomeScreen
+import com.salesiq.demoapp.ui.screens.HomepageHelpCenterScreen
+import com.salesiq.demoapp.ui.screens.KnowledgeBaseScreen
+import com.salesiq.demoapp.ui.screens.LauncherScreen
+import com.salesiq.demoapp.ui.screens.NotificationsScreen
+import com.salesiq.demoapp.ui.screens.OrdersShowcaseScreen
+import com.salesiq.demoapp.ui.screens.RefreshDataScreen
+import com.salesiq.demoapp.ui.screens.ResourceDetailScreen
+import com.salesiq.demoapp.ui.screens.SettingsScreen
+import com.salesiq.demoapp.ui.screens.UriSchemeScreen
+import com.salesiq.demoapp.ui.screens.VisitorScreen
+import com.salesiq.demoapp.ui.theme.MobilistenTheme
 
-class MainActivity : AppCompatActivity() {
-    private var activityMainBinding: ActivityMainBinding? = null
-    private val binding get() = activityMainBinding!!
+/** Route names for the single-Activity Compose navigation graph. */
+object Routes {
+    const val HOME = "home"
+    const val CORE = "core"
+    const val LAUNCHER = "launcher"
+    const val VISITOR = "visitor"
+    const val CHAT = "chat"
+    const val CALLS = "calls"
+    const val KNOWLEDGE_BASE = "knowledge_base"
+    const val HOMEPAGE = "homepage"
+    const val NOTIFICATIONS = "notifications"
+    const val EVENTS = "events"
+    const val SETTINGS = "settings"
+
+    // Detail / destination / showcase screens.
+    const val REFRESH_DATA = "refresh_data"
+    const val URI_SCHEME = "uri_scheme"
+    const val ORDERS = "orders"
+    const val STORE = "store"
+    const val STORE_CART = "store_cart"
+    const val STORE_PRODUCT = "store_product/{productId}"
+    const val STORE_ORDER_DETAIL = "store_order_detail/{orderId}"
+    const val CHAT_DETAIL = "chat_detail/{chatId}"
+    const val CALL_DETAIL = "call_detail/{callId}"
+    const val RESOURCE_DETAIL = "resource_detail/{resourceId}"
+    const val CATEGORY_DRILL = "category_drill/{title}/{categoryId}"
+    const val DEPARTMENT_PICKER = "department_picker"
+    const val EVENT_DETAIL = "event_detail/{id}"
+
+    fun storeProduct(productId: String) = "store_product/$productId"
+    fun storeOrderDetail(orderId: String) = "store_order_detail/$orderId"
+    fun chatDetail(chatId: String) = "chat_detail/$chatId"
+    fun callDetail(callId: String) = "call_detail/$callId"
+    fun resourceDetail(resourceId: String) = "resource_detail/$resourceId"
+    fun categoryDrill(title: String, categoryId: String) = "category_drill/$title/$categoryId"
+    fun eventDetail(id: Long) = "event_detail/$id"
+}
+
+/**
+ * Human-readable page title per route — reported to SalesIQ so the operator can see the
+ * visitor's in-app navigation path. Keyed by the route pattern (destination.route), so the
+ * argument-carrying routes are matched by their template (e.g. "store_product/{productId}").
+ */
+private val PAGE_TITLES: Map<String, String> = mapOf(
+    Routes.HOME to "Home",
+    Routes.CORE to "Core & configuration",
+    Routes.LAUNCHER to "Launcher",
+    Routes.VISITOR to "Visitor",
+    Routes.CHAT to "Chat",
+    Routes.CALLS to "Calls",
+    Routes.KNOWLEDGE_BASE to "Knowledge base",
+    Routes.HOMEPAGE to "Homepage & help center",
+    Routes.NOTIFICATIONS to "Notifications",
+    Routes.EVENTS to "Events",
+    Routes.SETTINGS to "Settings",
+    Routes.REFRESH_DATA to "Refresh data",
+    Routes.URI_SCHEME to "URI scheme",
+    Routes.ORDERS to "Orders",
+    Routes.STORE to "Zylker store",
+    Routes.STORE_CART to "Cart",
+    Routes.STORE_PRODUCT to "Store product",
+    Routes.STORE_ORDER_DETAIL to "Order detail",
+    Routes.CHAT_DETAIL to "Chat detail",
+    Routes.CALL_DETAIL to "Call detail",
+    Routes.RESOURCE_DETAIL to "Resource detail",
+    Routes.CATEGORY_DRILL to "Resources",
+    Routes.DEPARTMENT_PICKER to "Department picker",
+    Routes.EVENT_DETAIL to "Event detail",
+)
+
+class MainActivity : ComponentActivity() {
+    // Android 13+ (API 33): POST_NOTIFICATIONS is a runtime permission. Registered here and launched from
+    // onCreate so push notifications can be displayed. No-op below API 33 (granted at install).
+    private val requestNotificationPermission =
+        registerForActivityResult(ActivityResultContracts.RequestPermission()) { /* OS records the choice */ }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        activityMainBinding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-
-        MobilistenDemoApplication.mobilistenInitializationStateLiveData.observe(this) { mobilistenState: Result ->
-            with(binding) {
-                if (mobilistenState.status == Result.MobilistenInitStatus.SUCCESS) {
-                    openSalesiqButton.isEnabled = true
-                    visitorDetailsPageButton.isEnabled = true
-                    failureText.visibility = View.GONE
-                } else {
-                    failureText.visibility = View.VISIBLE
-                    failureText.text =
-                        mobilistenState.data.uppercase(Locale.getDefault())
+        maybeRequestNotificationPermission()
+        enableEdgeToEdge()
+        setContent {
+            val mode by SettingsStore.themeMode.collectAsState()
+            MobilistenTheme(mode = mode) {
+                Box(modifier = Modifier.fillMaxSize()) {
+                    AppNavHost()
+                    ToastHost()
                 }
             }
         }
+    }
 
-        with(binding) {
+    /** Prompts for POST_NOTIFICATIONS on Android 13+ if not already granted; no-op otherwise. */
+    private fun maybeRequestNotificationPermission() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU &&
+            ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS) !=
+            PackageManager.PERMISSION_GRANTED
+        ) {
+            requestNotificationPermission.launch(Manifest.permission.POST_NOTIFICATIONS)
+        }
+    }
+}
 
-            /*
-             *  This API is used to open the SalesIQ SDK from the custom launcher view
-             */
-            salesiqImageView.setOnClickListener { ZohoSalesIQ.present() }
-            openSalesiqButton.setOnClickListener { ZohoSalesIQ.present() }
+@androidx.compose.runtime.Composable
+private fun AppNavHost() {
+    val nav = rememberNavController()
 
-            loginButton.setOnClickListener {
-                val visitorID = visitorIdInput.text.toString().trim { it <= ' ' }
-
-                /*
-                 * This API allows you to register a visitor using a unique ID with the SalesIQ SDK.
-                 * If your application has login and logout life cycles, you can enroll your visitor and
-                 * their activities in the SDK will be synchronized across multiple platforms.
-                 * Refer https://www.zoho.com/salesiq/help/developer-guides/android-sdk-regsiter-visitor-v4-2-0.html
-                 */
-                if (MobilistenDemoApplication.mobilistenInitializationStateLiveData.value?.status == Result.MobilistenInitStatus.SUCCESS) {
-                    ZohoSalesIQ.registerVisitor(visitorID, object : RegisterListener {
-                        override fun onSuccess() {
-                            Toast.makeText(
-                                this@MainActivity,
-                                "Registering Visitor as ' $visitorID '...",
-                                Toast.LENGTH_LONG
-                            ).show()
-                        }
-
-                        override fun onFailure(code: Int, message: String) {
-                            Toast.makeText(this@MainActivity, message, Toast.LENGTH_LONG).show()
-                            Log.d(
-                                TAG,
-                                "Error while registering visitor, Code: $code , Message: $message"
-                            )
-                        }
-                    })
-                } else {
-                    Log.d(
-                        TAG,
-                        "Mobilisten has not been initialized yet"
-                    )
-                }
-            }
-
-            logoutButton.setOnClickListener {
-                /*
-                 * This API allows you to unregister a user once they are registered using the .registerVisitor() API.
-                 * If your application has login and logout life cycles, you can unregister a visitor during a session logout
-                 * which would clear any data that the SDK may hold such as past conversations had by the registered user.
-                 * Refer https://www.zoho.com/salesiq/help/developer-guides/android-sdk-unregsiter-visitor-v4-2-0.html
-                 */
-                ZohoSalesIQ.unregisterVisitor(applicationContext)
-            }
-
-            /*
-             * You can use this API to customize the Launcher Button including the mode, positions, and icon as you wish.
-             * Refer https://www.zoho.com/salesiq/help/developer-guides/android-launcher-button-customization-v4-2-0.html
-             */
-            launcherPositionStaticButton.setOnClickListener {
-                val launcherProperties =
-                    LauncherProperties(LauncherModes.STATIC) // The button sticks at the screen's bottom right corner.
-                launcherProperties.icon = AppCompatResources.getDrawable(
-                    this@MainActivity,
-                    com.zoho.livechat.android.R.drawable.salesiq_target
-                ) // You can set an icon for the SalesIQ launcher.
-                ZohoSalesIQ.setLauncherProperties(launcherProperties) // Use this API to set the LauncherProperties
-            }
-
-            launcherPositionFloatingButton.setOnClickListener {
-                val launcherProperties =
-                    LauncherProperties(LauncherModes.FLOATING) // The button is movable within the application screen.
-                launcherProperties.setDirection(LauncherProperties.Horizontal.LEFT) // This sets the launcher icon to the left side of the screen
-                launcherProperties.setY(DeviceConfig.getDeviceHeight() / 2) // You can also set the 'y' position by mentioning the pixel values
-                ZohoSalesIQ.setLauncherProperties(launcherProperties) // Use this API to set the LauncherProperties
-            }
-
-            /*
-             * You can use this API to show/hide the launcher in the SalesIQ SDK.
-             */
-            showLauncherButton.setOnClickListener { ZohoSalesIQ.Launcher.show(ZohoSalesIQ.Launcher.VisibilityMode.ALWAYS) }
-            hideLauncherButton.setOnClickListener { ZohoSalesIQ.Launcher.show(ZohoSalesIQ.Launcher.VisibilityMode.NEVER) }
-
-            /*
-             * This API lets you configure the language preference for the embedded chat widget.
-             * Refer https://www.zoho.com/salesiq/help/developer-guides/android-sdk-chat-language-v4-2-0.html
-             */
-            englishLanguageTextview.setOnClickListener {
-                ZohoSalesIQ.Chat.setLanguage("en")
-                Toast.makeText(this@MainActivity, "English language is set", Toast.LENGTH_SHORT)
-                    .show()
-            }
-            frenchLanguageTextview.setOnClickListener {
-                ZohoSalesIQ.Chat.setLanguage("fr")
-                Toast.makeText(this@MainActivity, "French language is set", Toast.LENGTH_SHORT)
-                    .show()
-            }
-            japaneseLanguageTextview.setOnClickListener {
-                ZohoSalesIQ.Chat.setLanguage("ja")
-                Toast.makeText(this@MainActivity, "Japanese language is set", Toast.LENGTH_SHORT)
-                    .show()
-            }
-
-            /*
-             * This API would let you track specified custom actions performed by the visitors in your mobile application.
-             * The actions will be visible within the Activity section in the chat window.
-             *
-             * You can also use this API to open the chat window and trigger a new chat based on the performed custom action
-             * by setting the shouldOpenChatWindow parameter to true. By default, the shouldOpenChatWindow parameter is set to false.
-             * Refer https://www.zoho.com/salesiq/help/developer-guides/android-sdk-tracking-custom-actions-v4-2-0.html
-             */
-            trackVisitorActivityButton.setOnClickListener {
-                ZohoSalesIQ.Tracking.setCustomAction("Added To Cart")
-//              ZohoSalesIQ.Tracking.setCustomAction("Added To Cart", true)
-            }
-
-            visitorDetailsPageButton.setOnClickListener {
-                startActivity(
-                    Intent(this@MainActivity, VisitorInfoActivity::class.java)
-                )
-            }
-            getSalesiqDataButton.setOnClickListener {
-                startActivity(
-                    Intent(this@MainActivity, SalesIQDataActivity::class.java)
-                )
-            }
+    // Central page-title tracking: report every screen the visitor lands on to SalesIQ, so the
+    // operator sees their in-app navigation path. Keyed to the current destination, this fires
+    // once per page from one place rather than per-screen. Mirrors the React Native sample.
+    val currentEntry by nav.currentBackStackEntryAsState()
+    val currentRoute = currentEntry?.destination?.route
+    LaunchedEffect(currentRoute) {
+        currentRoute?.let { route ->
+            ZohoSalesIQ.Tracking.setPageTitle(PAGE_TITLES[route] ?: route)
         }
     }
 
-    override fun onResume() {
-        super.onResume()
+    NavHost(navController = nav, startDestination = Routes.HOME) {
+        composable(Routes.HOME) { HomeScreen(nav) }
+        composable(Routes.CORE) { CoreScreen(nav) }
+        composable(Routes.LAUNCHER) { LauncherScreen(nav) }
+        composable(Routes.VISITOR) { VisitorScreen(nav) }
+        composable(Routes.CHAT) { ChatScreen(nav) }
+        composable(Routes.CALLS) { CallsScreen(nav) }
+        composable(Routes.KNOWLEDGE_BASE) { KnowledgeBaseScreen(nav) }
+        composable(Routes.HOMEPAGE) { HomepageHelpCenterScreen(nav) }
+        composable(Routes.NOTIFICATIONS) { NotificationsScreen(nav) }
+        composable(Routes.EVENTS) { EventsScreen(nav) }
+        composable(Routes.SETTINGS) { SettingsScreen(nav) }
 
-        /*
-         * This API lets you set an apt title for each and every screen in your application,
-         * thus making it easy for you to track down the trail of your visitors when they navigate through the screens of your mobile app.
-         * It will be visible within the Activity section in the chat window.
-         * Refer https://www.zoho.com/salesiq/help/developer-guides/android-sdk-tracking-title-v4-2-0.html
-         */
-        ZohoSalesIQ.Tracking.setPageTitle("Home Activity")
-    }
-
-    override fun onPause() {
-        super.onPause()
-        binding.visitorIdInput.clearFocus()
-    }
-
-    companion object {
-        private const val TAG = "mobilisten:main"
+        composable(Routes.REFRESH_DATA) { RefreshDataScreen(nav) }
+        composable(Routes.URI_SCHEME) { UriSchemeScreen(nav) }
+        composable(Routes.ORDERS) { OrdersShowcaseScreen(nav) }
+        composable(Routes.STORE) { StoreScreen(nav) }
+        composable(Routes.STORE_CART) { StoreCartScreen(nav) }
+        composable(
+            Routes.STORE_PRODUCT,
+            arguments = listOf(navArgument("productId") { type = NavType.StringType }),
+        ) { entry -> StoreProductScreen(nav, entry.arguments?.getString("productId").orEmpty()) }
+        composable(
+            Routes.STORE_ORDER_DETAIL,
+            arguments = listOf(navArgument("orderId") { type = NavType.StringType }),
+        ) { entry -> StoreOrderDetailScreen(nav, entry.arguments?.getString("orderId").orEmpty()) }
+        composable(Routes.DEPARTMENT_PICKER) { DepartmentPickerScreen(nav) }
+        composable(
+            Routes.CHAT_DETAIL,
+            arguments = listOf(navArgument("chatId") { type = NavType.StringType }),
+        ) { entry -> ChatDetailScreen(nav, entry.arguments?.getString("chatId").orEmpty()) }
+        composable(
+            Routes.CALL_DETAIL,
+            arguments = listOf(navArgument("callId") { type = NavType.StringType }),
+        ) { entry -> CallDetailScreen(nav, entry.arguments?.getString("callId").orEmpty()) }
+        composable(
+            Routes.RESOURCE_DETAIL,
+            arguments = listOf(navArgument("resourceId") { type = NavType.StringType }),
+        ) { entry -> ResourceDetailScreen(nav, entry.arguments?.getString("resourceId").orEmpty()) }
+        composable(
+            Routes.CATEGORY_DRILL,
+            arguments = listOf(
+                navArgument("title") { type = NavType.StringType },
+                navArgument("categoryId") { type = NavType.StringType },
+            ),
+        ) { entry ->
+            CategoryDrillInScreen(
+                nav,
+                entry.arguments?.getString("title").orEmpty(),
+                entry.arguments?.getString("categoryId").orEmpty(),
+            )
+        }
+        composable(
+            Routes.EVENT_DETAIL,
+            arguments = listOf(navArgument("id") { type = NavType.LongType }),
+        ) { entry -> EventDetailScreen(nav, entry.arguments?.getLong("id") ?: -1L) }
     }
 }

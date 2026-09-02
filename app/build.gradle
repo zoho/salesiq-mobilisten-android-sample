@@ -1,32 +1,47 @@
 plugins {
     id 'com.android.application'
-    id 'kotlin-android'
+    id 'org.jetbrains.kotlin.android'
+    id 'org.jetbrains.kotlin.plugin.compose'
 }
 
 android {
-    compileSdk 35
-
+    compileSdkVersion 36
     namespace "com.salesiq.demoapp"
 
     defaultConfig {
-        applicationId "com.salesiq.demoapp"
-        minSdk 21
-        targetSdk 35
+        applicationId "com.zoho.salesiq.mobilisten.showcase"
+        minSdk 23
+        targetSdk 36
         versionCode 1
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        // Provide your app and access keys from the SalesIQ portal (or pass -PappKey= / -PaccessKey= at build time).
+        // Shipping placeholders by default surfaces the graceful "keys required" state in the app.
+
+        def appKey = project.hasProperty("appKey") ? project.appKey : "<YOUR_APP_KEY>"
+        def accessKey = project.hasProperty("accessKey") ? project.accessKey : "<YOUR_ACCESS_KEY>"
+
+        // Bundling the app and access keys into BuildConfig
+        buildConfigField "String", "APP_KEY", "\"${appKey}\""
+        buildConfigField "String", "ACCESS_KEY", "\"${accessKey}\""
     }
 
     buildTypes {
+        debug {
+//            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
 
     buildFeatures {
-        viewBinding true
+        compose true
+        buildConfig true
     }
 
     compileOptions {
@@ -36,15 +51,26 @@ android {
 }
 
 dependencies {
-    implementation 'androidx.appcompat:appcompat:1.5.1'
-    implementation 'com.google.android.material:material:1.3.0'
-    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2'
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    // Jetpack Compose
+    def composeBom = platform('androidx.compose:compose-bom:2024.09.03')
+    implementation composeBom
+    implementation 'androidx.compose.ui:ui'
+    implementation 'androidx.compose.ui:ui-graphics'
+    implementation 'androidx.compose.foundation:foundation'
+    implementation 'androidx.compose.material3:material3'
+    implementation 'androidx.compose.material:material-icons-extended'
+    implementation 'androidx.activity:activity-compose:1.9.3'
+    implementation 'androidx.navigation:navigation-compose:2.8.4'
+    implementation 'androidx.lifecycle:lifecycle-runtime-compose:2.8.7'
 
-    implementation 'com.google.firebase:firebase-core:16.0.9'
-    implementation 'com.google.firebase:firebase-messaging:18.0.0'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.9.4'
+    implementation 'androidx.lifecycle:lifecycle-process:2.9.4'
 
-    implementation 'com.zoho.salesiq:mobilisten:9.0.0-beta04'
+    implementation 'com.google.firebase:firebase-messaging:25.0.1'
+
+    implementation 'com.zoho.salesiq:mobilisten:9.0.0'
+    implementation 'com.zoho.salesiq:mobilisten-calls:0.1.3'
+
 }
 
-//apply plugin: 'com.google.gms.google-services'
+//apply plugin: 'com.google.gms.google-services'  // uncomment after adding your google-services.json
