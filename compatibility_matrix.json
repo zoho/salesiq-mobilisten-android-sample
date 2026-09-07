@@ -1,6 +1,6 @@
 [
   {
-    "mobilistenVersion": "9.0.0",
+    "mobilistenVersion": "9.0.1",
     "mobilistenCallsVersion": "0.1.3",
     "minSdkVersion": "23",
     "targetSdkVersion": "35"
