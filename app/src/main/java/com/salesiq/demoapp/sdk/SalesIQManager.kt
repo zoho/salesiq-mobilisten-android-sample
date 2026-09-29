@@ -181,7 +181,7 @@ object SalesIQManager {
             }
         })
 
-        // Calls listener: fires when an audio/video call changes state or its queue position moves.
+        // Calls listener: fires when an audio call changes state or its queue position moves.
         ZohoSalesIQCalls.addListener(object : SalesIQCallsListener {
             override fun onCallStateChanged(callState: ZohoSalesIQCalls.SalesIQCallState) {
                 EventStore.push("Call state changed", jsonOf("status" to callState.status), EventSource.Calls)

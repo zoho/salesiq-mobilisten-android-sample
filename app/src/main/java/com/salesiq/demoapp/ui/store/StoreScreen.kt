@@ -47,6 +47,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.salesiq.demoapp.ui.Routes
+import com.salesiq.demoapp.ui.screens.failToast
 import com.salesiq.demoapp.ui.components.AppButton
 import com.salesiq.demoapp.ui.components.AppIcon
 import com.salesiq.demoapp.ui.components.ButtonVariant
@@ -76,8 +77,9 @@ fun runSdk(label: String, fn: () -> Unit) {
     try {
         fn()
         if (label.isNotEmpty()) Toaster.show(label, ToastTone.Success)
-    } catch (_: Throwable) {
-        Toaster.show("Add keys in Settings to run live")
+    } catch (error: Throwable) {
+        // Common cause before init is missing keys; still surface the real reason + log it.
+        failToast("Add keys in Settings to run live", error)
     }
 }
 
@@ -253,13 +255,13 @@ private fun ShopTab(nav: NavController, c: AppColors) {
                     .fillMaxWidth()
                     .padding(bottom = 12.dp)
             ) {
-                pair.forEachIndexed { i, p ->
+                pair.forEachIndexed { i, product ->
                     if (i == 1) Spacer(Modifier.width(12.dp))
                     Box(Modifier.weight(1f)) {
-                        ProductCard(p, c) {
+                        ProductCard(product, c) {
                             nav.navigate(
                                 Routes.storeProduct(
-                                    p.id
+                                    product.id
                                 )
                             )
                         }
@@ -275,8 +277,8 @@ private fun ShopTab(nav: NavController, c: AppColors) {
 }
 
 @Composable
-private fun ProductCard(p: Product, c: AppColors, onClick: () -> Unit) {
-    val (bg, fg) = tintFor(c, p.tint)
+private fun ProductCard(product: Product, c: AppColors, onClick: () -> Unit) {
+    val (bg, fg) = tintFor(c, product.tint)
     Column(
         Modifier
             .fillMaxWidth()
@@ -291,22 +293,22 @@ private fun ProductCard(p: Product, c: AppColors, onClick: () -> Unit) {
                 .background(bg, RoundedCornerShape(10.dp)),
             contentAlignment = Alignment.Center
         ) {
-            Icon(p.icon, contentDescription = null, tint = fg, modifier = Modifier.size(34.dp))
+            Icon(product.icon, contentDescription = null, tint = fg, modifier = Modifier.size(34.dp))
         }
         Spacer(Modifier.height(8.dp))
-        Text(p.name, fontSize = 12.5.sp, color = c.textPrimary)
+        Text(product.name, fontSize = 12.5.sp, color = c.textPrimary)
         Spacer(Modifier.height(3.dp))
         Row(verticalAlignment = Alignment.CenterVertically) {
             Text(
-                money(p.price),
+                money(product.price),
                 fontSize = 13.5.sp,
                 fontWeight = FontWeight.SemiBold,
                 color = c.textPrimary
             )
-            if (p.oldPrice != null) {
+            if (product.oldPrice != null) {
                 Spacer(Modifier.width(6.dp))
                 Text(
-                    money(p.oldPrice),
+                    money(product.oldPrice),
                     fontSize = 11.sp,
                     color = c.textSecondary,
                     textDecoration = TextDecoration.LineThrough
@@ -331,16 +333,16 @@ private fun OrdersTab(nav: NavController, c: AppColors) {
             color = c.textPrimary
         )
         Spacer(Modifier.height(12.dp))
-        storeOrders.forEach { o ->
-            val p = productById(o.productId) ?: return@forEach
-            val (bg, fg) = tintFor(c, p.tint)
-            val delivered = o.status == "Delivered"
+        storeOrders.forEach { order ->
+            val product = productById(order.productId) ?: return@forEach
+            val (bg, fg) = tintFor(c, product.tint)
+            val delivered = order.status == "Delivered"
             Row(
                 Modifier
                     .fillMaxWidth()
                     .padding(bottom = 12.dp)
                     .background(c.card, RoundedCornerShape(13.dp))
-                    .clickable { nav.navigate(Routes.storeOrderDetail(o.id)) }
+                    .clickable { nav.navigate(Routes.storeOrderDetail(order.id)) }
                     .padding(12.dp),
                 verticalAlignment = Alignment.CenterVertically,
             ) {
@@ -351,7 +353,7 @@ private fun OrdersTab(nav: NavController, c: AppColors) {
                     contentAlignment = Alignment.Center
                 ) {
                     Icon(
-                        p.icon,
+                        product.icon,
                         contentDescription = null,
                         tint = fg,
                         modifier = Modifier.size(24.dp)
@@ -359,8 +361,8 @@ private fun OrdersTab(nav: NavController, c: AppColors) {
                 }
                 Spacer(Modifier.width(12.dp))
                 Column(Modifier.weight(1f)) {
-                    Text(p.name, fontSize = 13.sp, color = c.textPrimary)
-                    Text("#${o.id} · ${o.placed}", fontSize = 12.sp, color = c.textSecondary)
+                    Text(product.name, fontSize = 13.sp, color = c.textPrimary)
+                    Text("#${order.id} · ${order.placed}", fontSize = 12.sp, color = c.textSecondary)
                 }
                 Box(
                     Modifier
@@ -371,7 +373,7 @@ private fun OrdersTab(nav: NavController, c: AppColors) {
                         .padding(horizontal = 9.dp, vertical = 3.dp),
                 ) {
                     Text(
-                        o.status,
+                        order.status,
                         fontSize = 11.sp,
                         fontWeight = FontWeight.SemiBold,
                         color = if (delivered) c.secondary else c.primary
@@ -404,7 +406,9 @@ private fun HelpTab(c: AppColors) {
                     ) {
                     }
 
-                    override fun onFailure(code: Int, message: String?) {}
+                    override fun onFailure(code: Int, message: String?) {
+                        // Best-effort warm-up prefetch; failures are intentionally ignored.
+                    }
                 })
         }
     }
@@ -427,10 +431,10 @@ private fun HelpTab(c: AppColors) {
         )
         Spacer(Modifier.height(14.dp))
         Card {
-            topics.forEach { t ->
+            topics.forEach { topic ->
                 row {
                     ListRow(
-                        t,
+                        topic,
                         icon = AppIcon.Article,
                         tint = IconTint.Accent,
                         chevron = true,
@@ -438,7 +442,7 @@ private fun HelpTab(c: AppColors) {
                             // Start a support chat pre-filled with the chosen help topic.
                             runSdk("Opening chat…") {
                                 ZohoSalesIQ.Chat.start(
-                                    "I need help: $t",
+                                    "I need help: $topic",
                                     null,
                                     "Support"
                                 ) { }

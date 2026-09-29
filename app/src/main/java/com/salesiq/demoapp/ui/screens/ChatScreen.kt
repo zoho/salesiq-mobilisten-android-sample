@@ -128,10 +128,8 @@ fun ChatScreen(nav: NavController) {
             // Open a new chat with a starting question, routed to the given department.
             ZohoSalesIQ.Chat.start(question.ifBlank { "How can we help?" }, null, department) { res ->
                 result = res.toResultString { chat -> jsonOf("chatId" to chat?.chatID, "status" to chat?.chatStatus) }
-                Toaster.show(
-                    if (res.isSuccess) "Conversation started" else "Failed to start chat",
-                    if (res.isSuccess) ToastTone.Success else ToastTone.Danger,
-                )
+                if (res.isSuccess) Toaster.show("Conversation started", ToastTone.Success)
+                else failToast("Couldn't start chat", res.error)
             }
         })
         AppButton("Orders demo — a chat per order", icon = AppIcon.Homepage, variant = ButtonVariant.Secondary, onClick = {
@@ -158,10 +156,8 @@ fun ChatScreen(nav: NavController) {
                 // Start a chat by firing a named bot/automation trigger set up in the portal.
                 ZohoSalesIQ.Chat.startWithTrigger(triggerAction.trim(), null, department) { res ->
                     result = res.toResultString { chat -> jsonOf("chatId" to chat?.chatID, "trigger" to triggerAction.trim()) }
-                    Toaster.show(
-                        if (res.isSuccess) "Triggered chat" else "Trigger failed",
-                        if (res.isSuccess) ToastTone.Success else ToastTone.Danger,
-                    )
+                    if (res.isSuccess) Toaster.show("Triggered chat", ToastTone.Success)
+                    else failToast("Couldn't trigger chat", res.error)
                 }
             })
             AppButton("Apply conversation attributes", variant = ButtonVariant.Ghost, onClick = {
@@ -252,10 +248,8 @@ fun ChatScreen(nav: NavController) {
                         // Open the SDK UI directly on the conversation with the given chat ID.
                         ZohoSalesIQ.present(options) { res ->
                             result = res.toResultString { jsonOf("openById" to chatId.trim()) }
-                            Toaster.show(
-                                if (res.isSuccess) "Opening chat" else "Failed to open",
-                                if (res.isSuccess) ToastTone.Success else ToastTone.Danger,
-                            )
+                            if (res.isSuccess) Toaster.show("Opening chat", ToastTone.Success)
+                            else failToast("Couldn't open chat", res.error)
                         }
                     })
                 }
@@ -268,10 +262,8 @@ fun ChatScreen(nav: NavController) {
                         // Fetch a single conversation's details by its chat ID.
                         ZohoSalesIQ.Chat.get(chatId.trim()) { res ->
                             result = res.toResultString { chat -> jsonOf("chatId" to chat?.chatID, "status" to chat?.chatStatus, "question" to chat?.question) }
-                            Toaster.show(
-                                if (res.isSuccess) "Chat fetched" else "Chat not found",
-                                if (res.isSuccess) ToastTone.Success else ToastTone.Danger,
-                            )
+                            if (res.isSuccess) Toaster.show("Chat fetched", ToastTone.Success)
+                            else failToast("Couldn't fetch chat", res.error)
                         }
                     })
                 }
@@ -288,7 +280,7 @@ fun ChatScreen(nav: NavController) {
 
                             override fun onFailure(code: Int, message: String?) {
                                 result = jsonOf("error" to (message ?: "Failed to load chats"))
-                                Toaster.show("Failed to load chats", ToastTone.Danger)
+                                failToast("Couldn't load chats", code, message)
                             }
                         })
                     })
@@ -413,7 +405,7 @@ fun ChatScreen(nav: NavController) {
 
                                 override fun onFailure(code: Int, message: String?) {
                                     result = jsonOf("errorCode" to code, "message" to (message ?: "Unknown"))
-                                    Toaster.show("Failed to fetch image", ToastTone.Danger)
+                                    failToast("Couldn't fetch operator image", code, message)
                                 }
                             })
                         },

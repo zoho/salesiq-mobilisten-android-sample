@@ -285,6 +285,7 @@ fun CoreScreen(nav: NavController) {
                 // Open the SDK's chat/knowledge-base UI configured by the options built above.
                 ZohoSalesIQ.present(buildPresentOptions()) { res ->
                     result = res.toResultString { jsonOf("action" to "present", "status" to "presented") }
+                    if (!res.isSuccess) failToast("Couldn't present screen", res.error)
                 }
                 Toaster.show("Presenting SDK screen", ToastTone.Success)
             })
@@ -330,7 +331,7 @@ fun CoreScreen(nav: NavController) {
                         Toaster.show("Operator email set", ToastTone.Success)
                     } catch (e: InvalidEmailException) {
                         result = jsonOf("error" to (e.message ?: "Invalid email"))
-                        Toaster.show("Invalid email address", ToastTone.Danger)
+                        failToast("Invalid email address", e)
                     }
                 })
             }

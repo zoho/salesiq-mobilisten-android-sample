@@ -49,7 +49,7 @@ fun ResourceDetailScreen(nav: NavController, resourceId: String) {
 
                 override fun onFailure(code: Int, message: String?) {
                     // Keep the cached resource; surface only if nothing to show.
-                    if (resource == null) Toaster.show("Article unavailable", ToastTone.Danger)
+                    if (resource == null) failToast("Article unavailable", code, message)
                 }
             },
         )
@@ -117,7 +117,7 @@ fun ResourceDetailScreen(nav: NavController, resourceId: String) {
                     }
 
                     override fun onFailure(code: Int, message: String?) {
-                        Toaster.show(message ?: "Failed to open article", ToastTone.Danger)
+                        failToast("Couldn't open article", code, message)
                     }
                 },
             )

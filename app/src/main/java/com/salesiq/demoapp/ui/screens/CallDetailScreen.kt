@@ -66,10 +66,8 @@ fun CallDetailScreen(nav: NavController, callId: String) {
                 .build()
             // Open the SDK UI directly on this call conversation.
             ZohoSalesIQ.present(options) { res ->
-                Toaster.show(
-                    if (res.isSuccess) "Conversation opened" else "Failed to open",
-                    if (res.isSuccess) ToastTone.Success else ToastTone.Danger,
-                )
+                if (res.isSuccess) Toaster.show("Conversation opened", ToastTone.Success)
+                else failToast("Couldn't open conversation", res.error)
             }
         })
     }

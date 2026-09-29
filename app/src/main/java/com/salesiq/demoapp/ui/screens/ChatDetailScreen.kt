@@ -71,10 +71,8 @@ fun ChatDetailScreen(nav: NavController, chatId: String) {
                 .build()
             // Open the SDK UI directly on this conversation.
             ZohoSalesIQ.present(options) { res ->
-                Toaster.show(
-                    if (res.isSuccess) "Chat opened" else "Failed to open chat",
-                    if (res.isSuccess) ToastTone.Success else ToastTone.Danger,
-                )
+                if (res.isSuccess) Toaster.show("Chat opened", ToastTone.Success)
+                else failToast("Couldn't open chat", res.error)
             }
         })
         AppButton("End chat", variant = ButtonVariant.Destructive, enabled = !ended, onClick = {

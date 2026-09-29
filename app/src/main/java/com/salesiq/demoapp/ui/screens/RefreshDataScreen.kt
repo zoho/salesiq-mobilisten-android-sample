@@ -58,10 +58,8 @@ fun RefreshDataScreen(nav: NavController) {
             // Ask the SDK to re-fetch this conversation's fields from the registered data provider.
             ZohoSalesIQ.refreshData(data) { res ->
                 result = res.toResultString { jsonOf("success" to true, "type" to fieldType.name.lowercase()) }
-                Toaster.show(
-                    if (res.isSuccess) "Data refreshed" else "Refresh failed",
-                    if (res.isSuccess) ToastTone.Success else ToastTone.Danger,
-                )
+                if (res.isSuccess) Toaster.show("Data refreshed", ToastTone.Success)
+                else failToast("Couldn't refresh data", res.error)
             }
         })
 

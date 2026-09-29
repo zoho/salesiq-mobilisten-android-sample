@@ -58,8 +58,8 @@ object StoreCart {
     val total: Int get() = items.sumOf { it.product.price * it.qty }
 
     fun add(product: Product) {
-        val i = items.indexOfFirst { it.product.id == product.id }
-        if (i >= 0) items[i] = items[i].copy(qty = items[i].qty + 1)
+        val existingIndex = items.indexOfFirst { it.product.id == product.id }
+        if (existingIndex >= 0) items[existingIndex] = items[existingIndex].copy(qty = items[existingIndex].qty + 1)
         else items.add(CartItem(product, 1))
     }
 

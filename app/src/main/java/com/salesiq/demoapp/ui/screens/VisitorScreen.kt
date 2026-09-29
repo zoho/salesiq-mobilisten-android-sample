@@ -155,7 +155,7 @@ fun VisitorScreen(nav: NavController) {
 
                     override fun onFailure(code: Int, message: String?) {
                         result = jsonOf("errorCode" to code, "message" to (message ?: "Unknown"))
-                        Toaster.show("Registration failed", ToastTone.Danger)
+                        failToast("Couldn't register visitor", code, message)
                     }
                     })
                 }
@@ -170,7 +170,7 @@ fun VisitorScreen(nav: NavController) {
 
                     override fun onFailure(code: Int, message: String?) {
                         result = jsonOf("errorCode" to code, "message" to (message ?: "Unknown"))
-                        Toaster.show("Unregister failed", ToastTone.Danger)
+                        failToast("Couldn't unregister visitor", code, message)
                     }
                 })
             })

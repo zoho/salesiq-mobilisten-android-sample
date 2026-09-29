@@ -121,10 +121,8 @@ fun HomepageHelpCenterScreen(nav: NavController) {
                 // Open the AI-backed Help Center, optionally pre-filled with a question.
                 ZohoSalesIQ.HelpCenter.ask(question.ifBlank { " " }) { res ->
                     result = res.toResultString { jsonOf("action" to "ask", "status" to "opened") }
-                    Toaster.show(
-                        if (res.isSuccess) "Help center opened" else "Help center failed to open",
-                        if (res.isSuccess) ToastTone.Success else ToastTone.Danger,
-                    )
+                    if (res.isSuccess) Toaster.show("Help center opened", ToastTone.Success)
+                    else failToast("Couldn't open help center", res.error)
                 }
             })
         }

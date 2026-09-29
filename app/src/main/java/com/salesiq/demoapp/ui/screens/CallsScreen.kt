@@ -75,7 +75,8 @@ fun CallsScreen(nav: NavController) {
                 recent = list
                 DetailCache.calls = list
             } else {
-                recentError = "Failed to load recent calls"
+                // List refresh: keep the real reason in the inline error shown with Retry.
+                recentError = "Failed to load recent calls" + reason(res.error)
             }
             recentLoading = false
         }
@@ -129,17 +130,16 @@ fun CallsScreen(nav: NavController) {
             AppButton("Start call", icon = AppIcon.Calls, modifier = Modifier.weight(1f), onClick = {
                 // Place an outgoing call to an operator.
                 ZohoSalesIQCalls.start(null, true, null) { res ->
-                    Toaster.show(
-                        if (res.isSuccess) "Call started" else "Failed to start call",
-                        if (res.isSuccess) ToastTone.Success else ToastTone.Danger,
-                    )
+                    if (res.isSuccess) Toaster.show("Call started", ToastTone.Success)
+                    else failToast("Couldn't start call", res.error)
                     refreshRecent()
                 }
             })
             AppButton("End", variant = ButtonVariant.Destructive, modifier = Modifier.weight(1f), onClick = {
                 // Hang up the current call.
                 ZohoSalesIQCalls.end { res ->
-                    Toaster.show(if (res.isSuccess) "Call ended" else "Failed to end call", if (res.isSuccess) ToastTone.Default else ToastTone.Danger)
+                    if (res.isSuccess) Toaster.show("Call ended", ToastTone.Default)
+                    else failToast("Couldn't end call", res.error)
                     refreshRecent()
                 }
             })

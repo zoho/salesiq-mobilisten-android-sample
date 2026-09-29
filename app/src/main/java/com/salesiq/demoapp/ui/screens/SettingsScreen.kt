@@ -105,6 +105,8 @@ fun SettingsScreen(nav: NavController) {
                     ListRow("View logs", titleTone = TitleTone.Brand, chevron = true, onClick = {
                         runCatching {
                             context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://www.zoho.com/salesiq/help/developer-section/android-sdk-logger.html")))
+                        }.onFailure { error ->
+                            failToast("Couldn't open logs guide", error)
                         }
                     })
                 }

@@ -81,11 +81,10 @@ fun OrdersShowcaseScreen(nav: NavController) {
                                         order.id,
                                         null as String?
                                     ) { result ->
-                                        Toaster.show(
-                                            if (result.isSuccess) "Chat for order #${order.id}" else "Failed to start chat",
-                                            if (result.isSuccess) ToastTone.Success else ToastTone.Danger,
-                                        )
-                                        if (!result.isSuccess) {
+                                        if (result.isSuccess) {
+                                            Toaster.show("Chat for order #${order.id}", ToastTone.Success)
+                                        } else {
+                                            failToast("Couldn't start chat", result.error)
                                             // Fallback: open the SDK UI directly on this order's conversation.
                                             ZohoSalesIQ.present(
                                                 PresentOptions(

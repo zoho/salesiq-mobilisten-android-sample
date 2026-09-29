@@ -195,7 +195,7 @@ fun KnowledgeBaseScreen(nav: NavController) {
                             searchResults = emptyList()
                             result =
                                 jsonOf("errorCode" to code, "message" to (message ?: "Unknown"))
-                            Toaster.show("Search failed", ToastTone.Danger)
+                            failToast("Couldn't search ${content.plural}", code, message)
                         }
                     })
             })
@@ -284,6 +284,7 @@ fun KnowledgeBaseScreen(nav: NavController) {
                                                 "errorCode" to code,
                                                 "message" to (message ?: "Unknown")
                                             )
+                                            failToast("Couldn't open ${content.label.lowercase()}", code, message)
                                         }
                                     })
                             })
@@ -371,7 +372,7 @@ fun KnowledgeBaseScreen(nav: NavController) {
                         override fun onFailure(code: Int, message: String?) {
                             result =
                                 jsonOf("errorCode" to code, "message" to (message ?: "Unknown"))
-                            Toaster.show("Failed to load categories", ToastTone.Danger)
+                            failToast("Couldn't load categories", code, message)
                         }
                     })
             })
@@ -418,7 +419,7 @@ fun KnowledgeBaseScreen(nav: NavController) {
 
                     override fun onFailure(code: Int, message: String) {
                         result = jsonOf("errorCode" to code, "message" to message)
-                        Toaster.show("Failed to load departments", ToastTone.Danger)
+                        failToast("Couldn't load departments", code, message)
                     }
                 })
             })
