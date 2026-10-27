@@ -13,6 +13,7 @@ import com.salesiq.demoapp.state.SDKInitStatus
 import com.salesiq.demoapp.state.SettingsStore
 import com.salesiq.demoapp.state.hasPlaceholderKeys
 import com.salesiq.demoapp.ui.screens.jsonOf
+import com.salesiq.demoapp.ui.store.StoreLauncher
 import com.zoho.commons.ChatComponent
 import com.zoho.livechat.android.NotificationListener
 import com.zoho.livechat.android.SIQVisitor
@@ -232,8 +233,11 @@ object SalesIQManager {
                 EventStore.push("SDK initialized", "{\"status\":\"success\"}", EventSource.System)
                 // Make the chat UI follow the device's light/dark theme automatically.
                 ZohoSalesIQ.syncThemeWithOS(true)
-                // Keep the floating chat launcher button visible at all times.
-                ZohoSalesIQ.Launcher.show(ZohoSalesIQ.Launcher.VisibilityMode.ALWAYS)
+                // Keep the floating chat launcher button visible at all times. Inside the Zylker
+                // store it stays hidden; leaving the store shows it again.
+                if (!StoreLauncher.isHiddenByStore) {
+                    ZohoSalesIQ.Launcher.show(ZohoSalesIQ.Launcher.VisibilityMode.ALWAYS)
+                }
                 // Show the pre-chat form so visitors enter details before chatting.
                 ZohoSalesIQ.Chat.setVisibility(ChatComponent.prechatForm, true)
                 // Display the operator's photo on the launcher button.

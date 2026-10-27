@@ -68,7 +68,8 @@ dependencies {
 
     implementation 'com.google.firebase:firebase-messaging:25.0.1'
 
-    implementation 'com.zoho.salesiq:mobilisten:8.3.11'
+    implementation 'com.zoho.salesiq:mobilisten:9.0.3'
+    implementation 'com.zoho.salesiq:mobilisten-calls:0.1.5'
 
 }
 

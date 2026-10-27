@@ -3,7 +3,7 @@ package com.salesiq.demoapp.ui.screens
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.size
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateMapOf
 import androidx.compose.runtime.mutableStateOf
@@ -15,6 +15,7 @@ import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.salesiq.demoapp.sdk.DetailCache
+import com.salesiq.demoapp.state.ConfigStore
 import com.salesiq.demoapp.ui.Routes
 import com.salesiq.demoapp.ui.components.AppButton
 import com.salesiq.demoapp.ui.components.AppIcon
@@ -31,8 +32,10 @@ import com.salesiq.demoapp.ui.components.TitleTone
 import com.salesiq.demoapp.ui.components.ToastTone
 import com.salesiq.demoapp.ui.components.Toaster
 import com.zoho.commons.ChatComponent
+import com.zoho.livechat.android.SIQDepartment
 import com.zoho.livechat.android.VisitorChat
 import com.zoho.livechat.android.listeners.ConversationListener
+import com.zoho.livechat.android.listeners.DepartmentListener
 import com.zoho.livechat.android.listeners.OperatorImageListener
 import com.zoho.salesiqembed.ZohoSalesIQ
 
@@ -65,7 +68,8 @@ private val CHAT_COMPONENTS = listOf(
 @Composable
 fun ChatScreen(nav: NavController) {
     var question by remember { mutableStateOf("") }
-    var department by remember { mutableStateOf("Support") }
+    // The department picked on the Department screen, or none.
+    val department by ConfigStore.department.collectAsState()
     var triggerAction by remember { mutableStateOf("") }
     var attrName by remember { mutableStateOf("") }
     var chatId by remember { mutableStateOf("") }
@@ -81,18 +85,6 @@ fun ChatScreen(nav: NavController) {
     var offlineMessage by remember { mutableStateOf(true) }
     var allowOfflineChat by remember { mutableStateOf(true) }
     var result by remember { mutableStateOf<String?>(null) }
-
-    // DepartmentPicker returns the chosen department via the saved-state handle.
-    val currentEntry = nav.currentBackStackEntry
-    LaunchedEffect(currentEntry) {
-        val handle = currentEntry?.savedStateHandle ?: return@LaunchedEffect
-        handle.getStateFlow<String?>("selectedDepartment", null).collect { picked ->
-            if (!picked.isNullOrBlank()) {
-                department = picked
-                handle["selectedDepartment"] = null
-            }
-        }
-    }
 
     val componentState = remember {
         mutableStateMapOf(
@@ -125,7 +117,7 @@ fun ChatScreen(nav: NavController) {
         onBack = { nav.popBackStack() },
     ) {
         AppButton("Start a conversation", icon = AppIcon.Chat, onClick = {
-            // Open a new chat with a starting question, routed to the given department.
+            // Open a new chat with a starting question, routed to the picked department, if any.
             ZohoSalesIQ.Chat.start(question.ifBlank { "How can we help?" }, null, department) { res ->
                 result = res.toResultString { chat -> jsonOf("chatId" to chat?.chatID, "status" to chat?.chatStatus) }
                 if (res.isSuccess) Toaster.show("Conversation started", ToastTone.Success)
@@ -141,7 +133,7 @@ fun ChatScreen(nav: NavController) {
             Card {
                 row { Field("Question", question, { question = it }, placeholder = "How can we help?") }
                 row {
-                    ListRow("Department", value = department, chevron = true, onClick = {
+                    ListRow("Department", value = department ?: "None", chevron = true, onClick = {
                         nav.navigate(Routes.DEPARTMENT_PICKER)
                     })
                 }
@@ -180,11 +172,25 @@ fun ChatScreen(nav: NavController) {
                 Toaster.show("Default question set", ToastTone.Success)
             })
             AppButton("Route to multiple departments", variant = ButtonVariant.Ghost, onClick = {
-                val depts = listOf("Support", "Sales")
-                // Offer the visitor a choice of these departments for new chats.
-                ZohoSalesIQ.Chat.setDepartments(depts)
-                result = jsonOf("setDepartments" to depts.joinToString())
-                Toaster.show("Routing across ${depts.size} departments", ToastTone.Success)
+                // Fetch the chat departments configured in the portal.
+                ZohoSalesIQ.Chat.getDepartments(object : DepartmentListener {
+                    override fun onSuccess(departments: ArrayList<SIQDepartment>) {
+                        val depts = departments.mapNotNull { it.name }
+                        if (depts.isEmpty()) {
+                            Toaster.show("No departments to route to", ToastTone.Danger)
+                            return
+                        }
+                        // Offer the visitor a choice of these departments for new chats.
+                        ZohoSalesIQ.Chat.setDepartments(depts)
+                        result = jsonOf("setDepartments" to depts.joinToString())
+                        Toaster.show("Routing across ${depts.size} departments", ToastTone.Success)
+                    }
+
+                    override fun onFailure(code: Int, message: String?) {
+                        result = jsonOf("error" to (message ?: "Failed to load departments"))
+                        failToast("Couldn't load departments", code, message)
+                    }
+                })
             })
         }
 

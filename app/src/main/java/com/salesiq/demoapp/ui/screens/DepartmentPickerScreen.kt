@@ -4,14 +4,15 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.salesiq.demoapp.state.ConfigStore
 import com.salesiq.demoapp.ui.components.AppIcon
 import com.salesiq.demoapp.ui.components.Card
 import com.salesiq.demoapp.ui.components.ListRow
@@ -21,15 +22,15 @@ import com.salesiq.demoapp.ui.components.ToastTone
 import com.salesiq.demoapp.ui.components.Toaster
 import com.salesiq.demoapp.ui.theme.LocalAppColors
 import com.zoho.livechat.android.SIQDepartment
-import com.zoho.livechat.android.listeners.DepartmentListener
+import com.zoho.livechat.android.modules.conversations.models.CommunicationMode
 import com.zoho.salesiqembed.ZohoSalesIQ
 
-/** Detail — getDepartments feeds a tap-to-select picker (setDepartment). */
+/** Detail — getDepartments feeds a tap-to-select picker (setDepartment). The pick is kept in [ConfigStore]. */
 @Composable
 fun DepartmentPickerScreen(nav: NavController) {
     val c = LocalAppColors.current
     var departments by remember { mutableStateOf<List<SIQDepartment>>(emptyList()) }
-    var selected by remember { mutableStateOf<String?>(null) }
+    val selected by ConfigStore.department.collectAsState()
     var loading by remember { mutableStateOf(true) }
     var error by remember { mutableStateOf<String?>(null) }
     var reloadKey by remember { mutableStateOf(0) }
@@ -37,18 +38,28 @@ fun DepartmentPickerScreen(nav: NavController) {
     LaunchedEffect(reloadKey) {
         loading = true
         error = null
-        // Fetch the list of chat departments configured in the portal.
-        ZohoSalesIQ.Chat.getDepartments(object : DepartmentListener {
-            override fun onSuccess(list: ArrayList<SIQDepartment>) {
-                departments = list
-                loading = false
+        // Fetch the departments configured in the portal. A department that takes only calls is left
+        // out, because the pick routes chats.
+        ZohoSalesIQ.Conversation.getDepartments { result ->
+            if (result.isSuccess) {
+                departments = result.data.orEmpty().filter { it.communicationMode != CommunicationMode.CALL }
+            } else {
+                error = result.error?.message ?: "Failed to load departments"
             }
+            loading = false
+        }
+    }
 
-            override fun onFailure(code: Int, message: String?) {
-                error = message ?: "Failed to load departments"
-                loading = false
-            }
-        })
+    fun select(name: String?) {
+        ConfigStore.setDepartment(name)
+        // Route new chats to the chosen department. With none, SalesIQ routes them by itself.
+        ZohoSalesIQ.Chat.setDepartment(name)
+        Toaster.show(if (name != null) "Routing to $name" else "No department set", ToastTone.Success)
+        nav.popBackStack()
+    }
+
+    val checkMark: @Composable () -> Unit = {
+        Icon(AppIcon.Check.vector, contentDescription = null, tint = c.primary, modifier = Modifier.size(18.dp))
     }
 
     ScreenScaffold(
@@ -68,6 +79,14 @@ fun DepartmentPickerScreen(nav: NavController) {
                 emptyTitle = "No departments",
                 emptySubtitle = "Sign in with real keys to list departments",
             ) {
+                row {
+                    ListRow(
+                        "No department",
+                        subtitle = "SalesIQ routes the chat",
+                        onClick = { select(null) },
+                        trailing = if (selected == null) checkMark else null,
+                    )
+                }
                 departments.forEach { dept ->
                     val name = dept.name ?: dept.displayName ?: "Department"
                     val online = dept.available == true
@@ -75,17 +94,8 @@ fun DepartmentPickerScreen(nav: NavController) {
                         ListRow(
                             name,
                             subtitle = if (online) "Online" else "Offline",
-                            onClick = {
-                                selected = name
-                                // Route the next new chat to the chosen department.
-                                ZohoSalesIQ.Chat.setDepartment(name)
-                                nav.previousBackStackEntry?.savedStateHandle?.set("selectedDepartment", name)
-                                Toaster.show("Routing to $name", ToastTone.Success)
-                                nav.popBackStack()
-                            },
-                            trailing = if (selected == name) {
-                                { Icon(AppIcon.Check.vector, contentDescription = null, tint = c.primary, modifier = Modifier.size(18.dp)) }
-                            } else null,
+                            onClick = { select(name) },
+                            trailing = if (selected == name) checkMark else null,
                         )
                     }
                 }

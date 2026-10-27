@@ -23,6 +23,8 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.salesiq.demoapp.sdk.ConversationDataProviderStore
 import com.salesiq.demoapp.sdk.SampleConversationDataProvider
+import com.salesiq.demoapp.sdk.SampleTriggersDataProvider
+import com.salesiq.demoapp.sdk.TriggerDataProviderStore
 import com.salesiq.demoapp.state.AuthMode
 import com.salesiq.demoapp.state.ConfigStore
 import com.salesiq.demoapp.state.SDKInitStatus
@@ -78,7 +80,8 @@ fun CoreScreen(nav: NavController) {
 
     // Configuration
     var language by remember { mutableStateOf("English") }
-    var department by remember { mutableStateOf("Support") }
+    // The department picked on the Department screen, or none.
+    val department by ConfigStore.department.collectAsState()
     var operatorEmail by remember { mutableStateOf("") }
     var pageTitle by remember { mutableStateOf("Checkout screen") }
     var sessionId by remember { mutableStateOf("") }
@@ -109,6 +112,7 @@ fun CoreScreen(nav: NavController) {
 
     // Data provider — key/value editors backed by the store's JSON.
     val providerRegistered by ConversationDataProviderStore.registered.collectAsState()
+    val triggerProviderRegistered by TriggerDataProviderStore.registered.collectAsState()
     val displayEntries = remember {
         mutableStateListOf<KvEntry>().also { list ->
             val fields = ConversationDataProviderStore.displayFields()
@@ -309,7 +313,7 @@ fun CoreScreen(nav: NavController) {
                     })
                 }
                 row {
-                    ListRow("Department", subtitle = "Route new chats", value = department, chevron = true, onClick = {
+                    ListRow("Department", subtitle = "Route new chats", value = department ?: "None", chevron = true, onClick = {
                         nav.navigate(Routes.DEPARTMENT_PICKER)
                     })
                 }
@@ -466,6 +470,25 @@ fun CoreScreen(nav: NavController) {
             Card { keyValueRows(displayEntries) { syncProviderFields() } }
             AppText("Secret fields", style = AppType.caption, tone = TextTone.Secondary, modifier = Modifier.padding(start = 6.dp, top = 2.dp))
             Card { keyValueRows(secretEntries) { syncProviderFields() } }
+        }
+
+        // ── Trigger data provider ──────────────────────
+        Section(title = "Trigger data provider", footer = "The SDK invokes this when a trigger is initiated (landed / page access / widget click / custom action) to fetch display fields for the trigger payload; each request is logged to Events.") {
+            Card {
+                row {
+                    SwitchRow("Register trigger data provider", triggerProviderRegistered, { enabled ->
+                        TriggerDataProviderStore.setRegistered(enabled)
+                        if (enabled) {
+                            // Register a provider so the SDK can pull trigger display fields on demand.
+                            ZohoSalesIQ.Trigger.setDataProvider(SampleTriggersDataProvider)
+                        } else {
+                            // Remove the provider so the SDK stops requesting trigger fields.
+                            ZohoSalesIQ.Trigger.setDataProvider(null)
+                        }
+                        Toaster.show(if (enabled) "Trigger data provider registered" else "Trigger data provider removed", ToastTone.Success)
+                    }, subtitle = "setDataProvider", icon = AppIcon.Refresh, tint = IconTint.Secondary)
+                }
+            }
         }
 
         Section(title = "Response") {

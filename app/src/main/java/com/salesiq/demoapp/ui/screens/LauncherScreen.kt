@@ -9,6 +9,8 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import com.salesiq.demoapp.state.ConfigStore
+import com.salesiq.demoapp.state.LauncherVisibility
 import com.salesiq.demoapp.ui.Routes
 import com.salesiq.demoapp.ui.components.AppButton
 import com.salesiq.demoapp.ui.components.AppIcon
@@ -99,6 +101,8 @@ fun LauncherScreen(nav: NavController) {
                 // Show the built-in floating launcher with the chosen visibility rule.
                 ZohoSalesIQ.Launcher.show(mode)
             }
+            // Remember the choice, so the app can show the launcher again after the Zylker store hides it.
+            ConfigStore.setLauncherVisibility(LauncherVisibility(mode, isCustom = customLauncher))
             // Let users swipe the launcher away.
             ZohoSalesIQ.Launcher.enableDragToDismiss(dragToDismiss)
             // Show the operator's photo on the launcher button.

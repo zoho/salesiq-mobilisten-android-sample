@@ -71,12 +71,12 @@ fun StoreProductScreen(nav: NavController, productId: String) {
         Spacer(Modifier.height(10.dp))
         AppButton("Ask about this product", variant = ButtonVariant.Secondary, onClick = {
             // Product-scoped chat: attributes + customChatId pin it to this SKU.
-            runSdk("Opening chat…") {
+            runSdk("") {
                 // Tag the conversation with this product's name for operator context.
                 ZohoSalesIQ.Conversation.setAttributes { builder -> builder.setName(product.name); builder }
-                // Start a Sales chat scoped to this product (customChatId = product id).
-                ZohoSalesIQ.Chat.start("I have a question about ${product.name}", product.id, "Sales") { }
             }
+            // Start a chat scoped to this product (customChatId = product id).
+            startStoreChat("I have a question about ${product.name}", product.id)
         })
         Spacer(Modifier.height(9.dp))
         Text("Opens a chat scoped to this item", fontSize = 11.sp, color = c.textSecondary, modifier = Modifier.fillMaxWidth(), textAlign = androidx.compose.ui.text.style.TextAlign.Center)

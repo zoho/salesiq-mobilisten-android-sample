@@ -30,7 +30,6 @@ import com.salesiq.demoapp.ui.components.ScreenScaffold
 import com.salesiq.demoapp.ui.components.ToastTone
 import com.salesiq.demoapp.ui.components.Toaster
 import com.salesiq.demoapp.ui.theme.LocalAppColors
-import com.zoho.salesiqembed.ZohoSalesIQ
 
 /** Store order detail — shows delivery progress and starts a chat scoped to this order. */
 @Composable
@@ -55,8 +54,8 @@ fun StoreOrderDetailScreen(nav: NavController, orderId: String) {
     )
 
     val getHelp = {
-        // Start a Support chat scoped to this order (customChatId = order id).
-        runSdk("Opening chat…") { ZohoSalesIQ.Chat.start("I need help with order ${order.id}", order.id, "Support") { } }
+        // Start a chat scoped to this order (customChatId = order id).
+        startStoreChat("I need help with order ${order.id}", order.id)
     }
 
     ScreenScaffold(title = "Order #${order.id}", onBack = { nav.popBackStack() }, backLabel = "Zylker") {

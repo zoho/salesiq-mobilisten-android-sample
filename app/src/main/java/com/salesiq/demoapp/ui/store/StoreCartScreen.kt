@@ -22,6 +22,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.salesiq.demoapp.state.ConfigStore
 import com.salesiq.demoapp.ui.components.AppButton
 import com.salesiq.demoapp.ui.components.ButtonVariant
 import com.salesiq.demoapp.ui.components.Card
@@ -72,16 +73,17 @@ fun StoreCartScreen(nav: NavController) {
             AppButton("Place order", onClick = {
                 // A proactive trigger — the SDK offers help at checkout the way a store would.
                 runSdk("Order placed — we’ll follow up in chat") {
-                    // Fire a "checkout completed" trigger to proactively offer help after ordering.
-                    ZohoSalesIQ.Chat.startWithTrigger("checkout_completed", "cart", "Support") { }
+                    // Fire a "checkout completed" trigger to proactively offer help after ordering. It passes
+                    // the picked department, if any. With none, SalesIQ routes the chat by itself.
+                    ZohoSalesIQ.Chat.startWithTrigger("checkout_completed", "cart", ConfigStore.department.value) { }
                 }
                 StoreCart.clear()
                 nav.popBackStack()
             })
             Spacer(Modifier.height(10.dp))
             AppButton("Chat about payment", variant = ButtonVariant.Secondary, onClick = {
-                // Start a Support chat scoped to the cart (customChatId = "cart").
-                runSdk("Opening chat…") { ZohoSalesIQ.Chat.start("I have a question about payment", "cart", "Support") { } }
+                // Start a chat scoped to the cart (customChatId = "cart").
+                startStoreChat("I have a question about payment", "cart")
             })
         } else {
             Spacer(Modifier.height(12.dp))

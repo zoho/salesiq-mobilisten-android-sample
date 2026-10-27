@@ -1,6 +1,7 @@
 package com.salesiq.demoapp.state
 
 import android.content.Context
+import com.zoho.salesiqembed.ZohoSalesIQ
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -8,11 +9,17 @@ import kotlinx.coroutines.flow.asStateFlow
 /** Authentication mode reflected into SalesIQConfiguration at the automatic init call. */
 enum class AuthMode { Guest, UserId, Jwt }
 
+/** A launcher visibility that the Launcher screen applied, and whether it applied it to a custom launcher. */
+data class LauncherVisibility(val mode: ZohoSalesIQ.Launcher.VisibilityMode, val isCustom: Boolean)
+
 /**
  * Persisted configuration-builder state (auth mode, user-id / JWT token, custom fonts).
  * These are read by [com.salesiq.demoapp.sdk.SalesIQManager] when it builds the
  * SalesIQConfiguration for the automatic init on next launch — mirroring the mockup's
  * "Applied at the automatic init call" note.
+ *
+ * It also keeps two values in memory for the current run: the department picked on the
+ * Department screen, and the launcher visibility that the Launcher screen last applied.
  */
 object ConfigStore {
     private const val PREFS = "mobilisten_demo_config"
@@ -31,6 +38,22 @@ object ConfigStore {
 
     private val _customFonts = MutableStateFlow(false)
     val customFonts: StateFlow<Boolean> = _customFonts.asStateFlow()
+
+    /**
+     * The department picked on the Department screen, or null to let SalesIQ route chats by itself.
+     * The Chat screen and the Zylker store route their chats to it.
+     */
+    private val _department = MutableStateFlow<String?>(null)
+    val department: StateFlow<String?> = _department.asStateFlow()
+
+    /**
+     * The launcher visibility that the Zylker store restores when the visitor leaves it. Until the
+     * Launcher screen applies one, it is ALWAYS, the mode that the automatic init sets.
+     */
+    private val _launcherVisibility = MutableStateFlow(
+        LauncherVisibility(ZohoSalesIQ.Launcher.VisibilityMode.ALWAYS, isCustom = false)
+    )
+    val launcherVisibility: StateFlow<LauncherVisibility> = _launcherVisibility.asStateFlow()
 
     fun init(context: Context) {
         prefs = context.getSharedPreferences(PREFS, Context.MODE_PRIVATE)
@@ -54,5 +77,13 @@ object ConfigStore {
     fun setCustomFonts(enabled: Boolean) {
         _customFonts.value = enabled
         if (::prefs.isInitialized) prefs.edit().putBoolean(KEY_FONTS, enabled).apply()
+    }
+
+    fun setDepartment(name: String?) {
+        _department.value = name
+    }
+
+    fun setLauncherVisibility(visibility: LauncherVisibility) {
+        _launcherVisibility.value = visibility
     }
 }

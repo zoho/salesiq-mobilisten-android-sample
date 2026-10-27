@@ -1,5 +1,6 @@
 package com.salesiq.demoapp.ui.store
 
+import android.os.Bundle
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
@@ -33,6 +34,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
@@ -40,14 +42,16 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import androidx.navigation.NavDestination
+import com.salesiq.demoapp.state.ConfigStore
 import com.salesiq.demoapp.ui.Routes
-import com.salesiq.demoapp.ui.screens.failToast
 import com.salesiq.demoapp.ui.components.AppButton
 import com.salesiq.demoapp.ui.components.AppIcon
 import com.salesiq.demoapp.ui.components.ButtonVariant
@@ -58,8 +62,10 @@ import com.salesiq.demoapp.ui.components.ListRow
 import com.salesiq.demoapp.ui.components.SwitchRow
 import com.salesiq.demoapp.ui.components.ToastTone
 import com.salesiq.demoapp.ui.components.Toaster
+import com.salesiq.demoapp.ui.screens.failToast
 import com.salesiq.demoapp.ui.theme.AppColors
 import com.salesiq.demoapp.ui.theme.LocalAppColors
+import com.zoho.livechat.android.modules.common.ui.entities.PresentOptions
 import com.zoho.livechat.android.modules.visitor.models.SalesIQVisitorProfile
 import com.zoho.salesiq.mobilisten.calls.apis.ZohoSalesIQCalls
 import com.zoho.salesiqembed.ZohoSalesIQ
@@ -83,15 +89,99 @@ fun runSdk(label: String, fn: () -> Unit) {
     }
 }
 
+/**
+ * Starts a Zylker chat, routed to the department picked on the Department screen. With none,
+ * SalesIQ routes the chat by itself. If the chat can't start, it shows why and opens the SalesIQ
+ * window instead: the conversation linked to [customChatId] if there is one, otherwise the
+ * default screen.
+ */
+fun startStoreChat(question: String, customChatId: String? = null) {
+    runSdk("") {
+        ZohoSalesIQ.Chat.start(question, customChatId, ConfigStore.department.value) { result ->
+            if (result.isSuccess) {
+                Toaster.show("Opening chat…", ToastTone.Success)
+            } else {
+                failToast("Couldn't start chat", result.error)
+                val options = customChatId?.let { chatId ->
+                    PresentOptions(
+                        PresentOptions.Screen.Conversation(
+                            chatId,
+                            PresentOptions.Screen.Conversation.SessionType.CHAT
+                        )
+                    )
+                }
+                // Open the SalesIQ window instead: the chat linked to the custom chat ID, if any.
+                ZohoSalesIQ.present(options) { presentResult ->
+                    if (!presentResult.isSuccess) {
+                        failToast("Couldn't open SalesIQ", presentResult.error)
+                    }
+                }
+            }
+        }
+    }
+}
+
+/** The routes of the Zylker store screens. */
+private val STORE_ROUTES = setOf(
+    Routes.STORE,
+    Routes.STORE_PRODUCT,
+    Routes.STORE_CART,
+    Routes.STORE_ORDER_DETAIL
+)
+
+/**
+ * Zylker has its own chat button, so the SalesIQ launcher is hidden on every Zylker screen. When
+ * the visitor leaves the store for any other screen, the launcher is shown again with the
+ * visibility that the Launcher screen last applied. Moving between the Zylker screens leaves the
+ * launcher as it is.
+ */
+internal object StoreLauncher : NavController.OnDestinationChangedListener {
+    /** Whether the launcher is hidden because a Zylker screen is shown. */
+    var isHiddenByStore = false
+        private set
+
+    /** Starts following the screens that [nav] shows. It registers the listener only once. */
+    fun follow(nav: NavController) {
+        nav.removeOnDestinationChangedListener(this)
+        // Adding the listener reports the current screen right away.
+        nav.addOnDestinationChangedListener(this)
+    }
+
+    override fun onDestinationChanged(
+        controller: NavController,
+        destination: NavDestination,
+        arguments: Bundle?
+    ) {
+        val isStoreScreen = destination.route in STORE_ROUTES
+        if (isStoreScreen && !isHiddenByStore) {
+            isHiddenByStore = true
+            // Hide the launcher while the store is shown.
+            runSdk("") { ZohoSalesIQ.Launcher.show(ZohoSalesIQ.Launcher.VisibilityMode.NEVER) }
+        } else if (!isStoreScreen && isHiddenByStore) {
+            isHiddenByStore = false
+            val visibility = ConfigStore.launcherVisibility.value
+            runSdk("") {
+                if (visibility.isCustom) {
+                    // Restore the mode that the Launcher screen applied to the custom launcher.
+                    ZohoSalesIQ.Launcher.setVisibilityModeToCustomLauncher(visibility.mode)
+                } else {
+                    // Show the launcher again with the mode that the Launcher screen applied.
+                    ZohoSalesIQ.Launcher.show(visibility.mode)
+                }
+            }
+        }
+    }
+}
+
 /** Zylker demo store — a self-contained shopping app; additive, its own route. */
 @Composable
 fun StoreScreen(nav: NavController) {
     val c = LocalAppColors.current
     var tab by remember { mutableIntStateOf(0) }
 
-    androidx.compose.runtime.LaunchedEffect(Unit) {
-        // Keep the floating chat launcher visible on the store.
-        runSdk("") { ZohoSalesIQ.Launcher.show(ZohoSalesIQ.Launcher.VisibilityMode.ALWAYS) }
+    LaunchedEffect(Unit) {
+        // Hide the SalesIQ launcher on the store, and show it again when the visitor leaves it.
+        StoreLauncher.follow(nav)
         // Tell the SDK the visitor is on the store page, for operator context.
         runSdk("") { ZohoSalesIQ.Tracking.setPageTitle("Zylker store") }
     }
@@ -108,15 +198,7 @@ fun StoreScreen(nav: NavController) {
         floatingActionButton = {
             FloatingActionButton(
                 // Start a support chat when the visitor taps the floating help button.
-                onClick = {
-                    runSdk("Opening chat…") {
-                        ZohoSalesIQ.Chat.start(
-                            "Hi, I need help with Zylker",
-                            null,
-                            "Support"
-                        ) { }
-                    }
-                },
+                onClick = { startStoreChat("Hi, I need help with Zylker") },
                 containerColor = c.primary,
             ) {
                 Icon(
@@ -170,6 +252,23 @@ fun StoreScreen(nav: NavController) {
                     .padding(start = 16.dp, end = 8.dp, top = 10.dp, bottom = 8.dp),
                 verticalAlignment = Alignment.CenterVertically,
             ) {
+                // Go back to the sample's Home.
+                Box(
+                    Modifier
+                        .size(36.dp)
+                        .clip(RoundedCornerShape(12.dp))
+                        .background(c.tintPrimary)
+                        .clickable { nav.popBackStack() },
+                    contentAlignment = Alignment.Center,
+                ) {
+                    Icon(
+                        AppIcon.Back.vector,
+                        contentDescription = "Back to Home",
+                        tint = c.primary,
+                        modifier = Modifier.size(20.dp)
+                    )
+                }
+                Spacer(Modifier.width(10.dp))
                 Text(
                     "Zylker",
                     fontSize = 20.sp,
@@ -387,7 +486,7 @@ private fun OrdersTab(nav: NavController, c: AppColors) {
 
 @Composable
 private fun HelpTab(c: AppColors) {
-    androidx.compose.runtime.LaunchedEffect(Unit) {
+    LaunchedEffect(Unit) {
         // Warm up the knowledge base by pre-fetching help articles.
         runSdk("") {
             ZohoSalesIQ.KnowledgeBase.getResources(
@@ -440,13 +539,7 @@ private fun HelpTab(c: AppColors) {
                         chevron = true,
                         onClick = {
                             // Start a support chat pre-filled with the chosen help topic.
-                            runSdk("Opening chat…") {
-                                ZohoSalesIQ.Chat.start(
-                                    "I need help: $topic",
-                                    null,
-                                    "Support"
-                                ) { }
-                            }
+                            startStoreChat("I need help: $topic")
                         })
                 }
             }
@@ -469,15 +562,7 @@ private fun HelpTab(c: AppColors) {
             // Start a live support chat.
             AppButton(
                 "Start live chat",
-                onClick = {
-                    runSdk("Opening chat…") {
-                        ZohoSalesIQ.Chat.start(
-                            "Hi, I have a question",
-                            null,
-                            "Support"
-                        ) { }
-                    }
-                })
+                onClick = { startStoreChat("Hi, I have a question") })
             Spacer(Modifier.height(10.dp))
             // Place a call to an operator for a callback.
             AppButton(
