@@ -6,7 +6,7 @@ plugins {
 
 android {
     compileSdkVersion 36
-    namespace "com.salesiq.demoapp"
+    namespace "com.zoho.salesiq.mobilisten.showcase"
 
     defaultConfig {
         applicationId "com.zoho.salesiq.mobilisten.showcase"
@@ -68,8 +68,8 @@ dependencies {
 
     implementation 'com.google.firebase:firebase-messaging:25.0.1'
 
-    implementation 'com.zoho.salesiq:mobilisten:9.0.3'
-    implementation 'com.zoho.salesiq:mobilisten-calls:0.1.5'
+    implementation 'com.zoho.salesiq:mobilisten:9.0.4'
+    implementation 'com.zoho.salesiq:mobilisten-calls:0.1.6'
 
 }
 

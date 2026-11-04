@@ -1,0 +1,74 @@
+package com.zoho.salesiq.mobilisten.showcase.ui.screens
+
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.padding
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
+import com.zoho.livechat.android.modules.common.ui.entities.PresentOptions
+import com.zoho.livechat.android.modules.conversations.models.SalesIQConversation
+import com.zoho.salesiq.mobilisten.showcase.sdk.DetailCache
+import com.zoho.salesiq.mobilisten.showcase.ui.components.AppButton
+import com.zoho.salesiq.mobilisten.showcase.ui.components.AppIcon
+import com.zoho.salesiq.mobilisten.showcase.ui.components.Badge
+import com.zoho.salesiq.mobilisten.showcase.ui.components.BadgeTone
+import com.zoho.salesiq.mobilisten.showcase.ui.components.Card
+import com.zoho.salesiq.mobilisten.showcase.ui.components.IconTint
+import com.zoho.salesiq.mobilisten.showcase.ui.components.ListRow
+import com.zoho.salesiq.mobilisten.showcase.ui.components.ScreenScaffold
+import com.zoho.salesiq.mobilisten.showcase.ui.components.Section
+import com.zoho.salesiq.mobilisten.showcase.ui.components.ToastTone
+import com.zoho.salesiq.mobilisten.showcase.ui.components.Toaster
+import com.zoho.salesiqembed.ZohoSalesIQ
+
+/** Detail — opened from Calls › Recent. Open conversation = present(Conversation(id, CALL)). */
+@Composable
+fun CallDetailScreen(nav: NavController, callId: String) {
+    val call = remember(callId) { DetailCache.call(callId) }
+    val status = (call as? SalesIQConversation.Call)?.status
+
+    ScreenScaffold(
+        title = "Call",
+        subtitle = "callId · $callId",
+        onBack = { nav.popBackStack() },
+        backLabel = "Calls",
+    ) {
+        Row(
+            modifier = Modifier.padding(horizontal = 2.dp),
+            horizontalArrangement = Arrangement.spacedBy(8.dp),
+        ) {
+            val missed = status == SalesIQConversation.Call.Status.MISSED
+            Badge(status?.name ?: "Unknown", if (missed) BadgeTone.Warning else BadgeTone.Success)
+        }
+
+        Section(title = "Details") {
+            Card {
+                row {
+                    ListRow(
+                        call?.attenderName ?: call?.departmentName ?: "Call",
+                        subtitle = "Operator: ${call?.attenderName ?: "—"}",
+                        icon = AppIcon.Calls,
+                        tint = IconTint.Secondary,
+                    )
+                }
+                row { ListRow("Department", value = call?.departmentName ?: "—") }
+                row { ListRow("Question", value = call?.question ?: "—") }
+                row { ListRow("Queue position", value = (call?.queuePosition ?: 0).toString()) }
+            }
+        }
+
+        AppButton("Open conversation", icon = AppIcon.Calls, onClick = {
+            val options = PresentOptions.Builder()
+                .setScreen(PresentOptions.Screen.Conversation(callId, PresentOptions.Screen.Conversation.SessionType.CALL))
+                .build()
+            // Open the SDK UI directly on this call conversation.
+            ZohoSalesIQ.present(options) { res ->
+                if (res.isSuccess) Toaster.show("Conversation opened", ToastTone.Success)
+                else failToast("Couldn't open conversation", res.error)
+            }
+        })
+    }
+}
