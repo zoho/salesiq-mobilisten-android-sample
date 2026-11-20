@@ -1,99 +1,138 @@
-## Installing Mobilisten (ZohoSalesIQ Android SDK)
+# Zoho SalesIQ Android SDK (Mobilisten) sample
 
-### Requirements
-Ensure that your project meets the following requirements:
+This sample app shows how to add the Zoho SalesIQ Android SDK (Mobilisten) to an Android app. With the SDK, the people who use your app can chat with your team, get answers from a bot, read your help content, and talk to you in a voice call.
 
-- Minimum Android Version: Android 6.0 (Lollipop) (API Level 23)
-   - Compile SDK Version: 35 (Android 15)
-   - Required Permissions:
-      - android.permission.INTERNET (Required for network operations)
+For the complete guide, see the [Mobilisten Android documentation](https://www.zoho.com/salesiq/help/developer-guides/mobilisten/android/).
 
-###### Step 1:
-Add the following maven repository in the `settings.gradle` file or root build.gradle file `build.gradle`.
+## Requirements
 
-For Gradle version 6.7 and below
-```Gradle
-// Add the following to your project's root build.gradle file.
+- **Minimum Android version:** Android 5.0 (Lollipop), API level 21
+- **Compile SDK version:** API level 35 (Android 15) or above
+- **Java version:** Java 11 or above
+- **Gradle version:** Gradle 8.7 or above, with Android Gradle Plugin 8.6 or above
+- A Zoho SalesIQ account with your brand set up
 
-allprojects {
-   repositories {
-      google()
-      mavenCentral()
-      // ...
-      maven { url 'https://maven.zohodl.com' }
-   }
-}
-```
+## Get started
 
-For Gradle version 6.8 and above
-```Gradle
-// Add the following to your settings.gradle file.
+### 1. Get your App Key and Access Key
 
+In the SalesIQ console, open **Settings**, select **Brands**, choose your brand, and select **Mobile SDK**. On the **Installation** page, select the **Android** tab. Enter your app's package name, select **Generate**, and copy the App Key and Access Key.
+
+### 2. Add the Maven repository
+
+Add the Zoho Maven repository to your `settings.gradle` file:
+
+```kotlin
+// settings.gradle.kts
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
         google()
         mavenCentral()
-        // Add the Zoho Maven URL here
+        maven { url = uri("https://maven.zohodl.com") }
+    }
+}
+```
+
+```groovy
+// settings.gradle
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
         maven { url 'https://maven.zohodl.com' }
     }
 }
 ```
-     
-![enter image description here](https://www.zohowebstatic.com/sites/zweb/images/salesiq/step-4---settings.gradle-android-sdk.png)
-###### Step 2:
-Add the following dependency in the app's build.gradle file (**app/build.gradle**).
 
-    dependencies {
-       implementation 'com.zoho.salesiq:mobilisten:8.3.11'
-    }
+### 3. Add the dependency
 
-![enter image description here](https://www.zohowebstatic.com/sites/zweb/images/salesiq/step-5---dependency-android-sdk.png)
-###### Step 3:
+Add the SDK to your app-level `build.gradle` file, and then click **Sync Now**. Add the Calls module only if you want in-app voice calls.
 
-Then, press **Sync Now** in the bar that appears in the IDE.
+```kotlin
+// app/build.gradle.kts
+dependencies {
+    implementation("com.zoho.salesiq:mobilisten:9.0.4")
+    implementation("com.zoho.salesiq:mobilisten-calls:0.1.6") // Optional: voice calls
+}
+```
 
-![enter image description here](https://www.zohowebstatic.com/sites/zweb/images/salesiq/sync-now---android-sdk.png)
-###### Step 4:
+The SDK adds the permissions that it needs, such as `INTERNET`, to your app automatically.
 
-Now, initialize the SDK by adding the following line in the **onCreate()** method of your **Application class**. You will have to insert the **app key** and **access key** as mentioned below:
+### 4. Initialize the SDK
 
-    public class MyApplication extends Application {
-        @Override
-        public void onCreate() {
-            super.onCreate();
-            
-            InitConfig initConfig = new InitConfig();
-            initConfig.setFont(Fonts.REGULAR, <fontpath>);
-            
-            ZohoSalesIQ.init(this, "your app key", "your access key", initConfig, new InitListener() {
-                @Override
-                public void onInitSuccess() {
-                     ZohoSalesIQ.Launcher.show(ZohoSalesIQ.Launcher.VisibilityMode.ALWAYS); //by default launcher will be hidden and it can be enabled with this line.
-                }
+Initialize the SDK in the `onCreate()` method of your `Application` class. Call `MobilistenActivityLifecycleCallbacks.register(this)` first, before `super.onCreate()`. Replace `APP_KEY` and `ACCESS_KEY` with your own keys.
 
-                @Override
-                public void onInitError(int errorCode, String errorMessage) {
-                    //your code
-                }
-            });
+```kotlin
+// MyApplication.kt
+class MyApplication : Application() {
+    override fun onCreate() {
+        MobilistenActivityLifecycleCallbacks.register(this)
+        super.onCreate()
+
+        val configuration = SalesIQConfiguration.Builder("APP_KEY", "ACCESS_KEY").build()
+
+        ZohoSalesIQ.initialize(this, configuration) { result ->
+            if (result.isSuccess) {
+                // Show the chat launcher. It is hidden by default.
+                ZohoSalesIQ.Launcher.show(ZohoSalesIQ.Launcher.VisibilityMode.ALWAYS)
+            } else {
+                // Handle the failure.
+            }
         }
     }
-
-###### Step 5:
-Also, in the **AndroidManifest.xml** file, add the application class name in the **application** tag.
-
-    <application  android:name=".MyApplication">
-      ...
-    </application>​
-###### Step 6:
-### Proguard rules:
-If you have enabled ProGuard(minifyEnabled) R8, then please add the following rules in your `proguard-rules.pro` file in your `project/android` folder.
+}
 ```
+
+```java
+// MyApplication.java
+public class MyApplication extends Application {
+    @Override
+    public void onCreate() {
+        MobilistenActivityLifecycleCallbacks.register(this);
+        super.onCreate();
+
+        SalesIQConfiguration configuration = new SalesIQConfiguration.Builder("APP_KEY", "ACCESS_KEY").build();
+
+        ZohoSalesIQ.initialize(this, configuration, result -> {
+            if (result.isSuccess()) {
+                ZohoSalesIQ.Launcher.show(ZohoSalesIQ.Launcher.VisibilityMode.ALWAYS);
+            } else {
+                // Handle the failure.
+            }
+        });
+    }
+}
+```
+
+Then register the class in the `<application>` tag of your `AndroidManifest.xml` file:
+
+```xml
+<application
+    android:name=".MyApplication"
+    ... >
+```
+
+### 5. Add the ProGuard rule
+
+If you use ProGuard or R8 (`minifyEnabled true`), add this rule to your `proguard-rules.pro` file:
+
+```text
 -dontwarn kotlinx.parcelize.Parcelize
 ```
 
-Help Doc - [Mobilisten (ZohoSalesIQ Android SDK)](https://www.zoho.com/salesiq/help/developer-guides/mobilisten/android)
+### 6. Check your integration
 
-###### Demo Application:
-Download our demo app from the [Play Store](https://play.google.com/store/apps/details?id=com.zoho.salesiq.zylkerhomes) today!
+Run your app. The chat button appears on the screen. Tap it and start a conversation, and the visitor appears on your SalesIQ dashboard.
+
+## Run this sample
+
+1. Clone this repository, and open it in Android Studio.
+2. Replace `APP_KEY` and `ACCESS_KEY` with the keys from step 1.
+3. Run the app on a device or an emulator.
+
+## Learn more
+
+- [Mobilisten Android documentation](https://www.zoho.com/salesiq/help/developer-guides/mobilisten/android/): push notifications, customization, the API reference, and voice calls.
+- [Demo app on Google Play](https://play.google.com/store/apps/details?id=com.zoho.salesiq.zylkerhomes)
